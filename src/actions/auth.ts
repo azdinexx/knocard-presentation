@@ -1,6 +1,6 @@
 "use server";
 
-import { createSession, getSession } from "./session";
+import { createSession } from "./session";
 import { redirect } from "next/navigation";
 
 type SignInFormState = null | {
@@ -12,7 +12,6 @@ export async function signIn(state: SignInFormState, formData: FormData) {
   if (!password) {
     return { error: "password is required" };
   }
-  console.log(process.env.PASSWORD);
 
   const isPasswordCorrect = password === process.env.PASSWORD;
 

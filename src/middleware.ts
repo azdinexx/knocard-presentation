@@ -1,10 +1,8 @@
 import { jwtVerify } from "jose";
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-export default async function middleware(request: NextRequest) {
-  const cookieStore = cookies();
-  const session = cookieStore.get("knocard-session");
+export async function middleware(request: NextRequest) {
+  const session = request.cookies.get("knocard-session");
 
   // Check if the request is for a static asset or API route
   if (
