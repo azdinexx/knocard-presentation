@@ -1,6 +1,7 @@
 'use client'
 import { signIn } from '@/actions/auth'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { useFormState } from 'react-dom'
 import { toast, Toaster } from 'sonner'
@@ -8,12 +9,18 @@ import { toast, Toaster } from 'sonner'
 function PasswordPage() {
 
     const [state, action] = useFormState(signIn, null)
+    const router = useRouter()
 
     useEffect(() => {
         if (state?.error) {
             toast.error(state.error)
         }
-    }, [state])
+        if (state?.success) {
+            toast.success('signed in')
+            router.push('/')
+        }
+
+    }, [state, router])
     return (
         <>
 

@@ -3,10 +3,14 @@
 import { createSession } from "./session";
 import { redirect } from "next/navigation";
 
-type SignInFormState = null | {
-  error: string;
-};
-
+type SignInFormState =
+  | null
+  | {
+      error: string;
+    }
+  | {
+      success: boolean;
+    };
 export async function signIn(state: SignInFormState, formData: FormData) {
   const password = formData.get("password") as string;
   if (!password) {
@@ -21,5 +25,5 @@ export async function signIn(state: SignInFormState, formData: FormData) {
 
   await createSession();
 
-  redirect(`/`);
+  return { success: true };
 }
