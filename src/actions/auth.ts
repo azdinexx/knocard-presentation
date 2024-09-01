@@ -1,16 +1,13 @@
 "use server";
 
 import { createSession } from "./session";
-import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
-type SignInFormState =
-  | null
-  | {
-      error: string;
-    }
-  | {
-      success: boolean;
-    };
+type SignInFormState = null | {
+  error?: string;
+  success?: boolean;
+};
+
 export async function signIn(state: SignInFormState, formData: FormData) {
   const password = formData.get("password") as string;
   if (!password) {
@@ -23,7 +20,14 @@ export async function signIn(state: SignInFormState, formData: FormData) {
     return { error: "password is incorrect" };
   }
 
-  await createSession();
+  const session = await createSession();
+  cookies().set("knocard-session", session, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    maxAge: 3600, // 1 hour
+    path: "/",
+  });
 
   return { success: true };
 }
