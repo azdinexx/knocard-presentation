@@ -12,24 +12,6 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (request.nextUrl.pathname === "/password") {
-    if (session) {
-      try {
-        await jwtVerify(
-          session.value,
-          new TextEncoder().encode(process.env.JWT_SECRET)
-        );
-        // If verification succeeds, redirect to home
-        return NextResponse.redirect(new URL("/", request.url));
-      } catch {
-        // If verification fails, continue to password page
-        return NextResponse.next();
-      }
-    }
-    // If no session, continue to password page
-    return NextResponse.next();
-  }
-
   if (!session) {
     return NextResponse.redirect(new URL("/password", request.url));
   }
