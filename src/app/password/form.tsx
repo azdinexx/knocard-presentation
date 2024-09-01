@@ -26,6 +26,8 @@ function PasswordPage() {
                         <label htmlFor="password" className='sr-only'>password</label>
                         <input id='password' name='password' type="password" className='  p-4 bg-white rounded-xl w-full'
                             placeholder='password'
+                            required
+                            autoFocus
                         />
                         <button type='submit' className='  p-4  rounded-xl w-full bg-blue-800 text-white hover:bg-blue-700'>
                             <span>submit</span>
