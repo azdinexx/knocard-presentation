@@ -13,7 +13,6 @@ const FAQ: React.FC<{ faqData: FAQItem[] }> = ({
 }: {
     faqData: FAQItem[]
 }) => {
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
         <div className="w-full  overflow-y-auto">
@@ -21,28 +20,26 @@ const FAQ: React.FC<{ faqData: FAQItem[] }> = ({
                 <motion.div
                     key={index}
                     initial={false}
-                    className="mb-4 rounded-md overflow-hidden bg-blue-400/70 text-white"
+                    className="mb-4 rounded-md overflow-hidden bg-[#007CB480] text-white"
                 >
                     <motion.button
-                        className="w-full text-left font-semibold p-4 hover:bg-blue-400/70"
-                        onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                        className="w-full text-left font-semibold p-4 pb-0"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                     >
                         {item.q}
                     </motion.button>
                     <AnimatePresence>
-                        {openIndex === index && (
-                            <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className=''
-                            >
-                                <p className="px-8 py-4">{item.a}</p>
-                            </motion.div>
-                        )}
+
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className=''
+                        >
+                            <p className="px-8 py-4 text-[#EEEEEE]">{item.a}</p>
+                        </motion.div>
                     </AnimatePresence>
                 </motion.div>
             ))}

@@ -59,17 +59,6 @@ export default function Hero() {
 
 const list = [
     {
-        id: 'messaging',
-        title: 'Messaging',
-        icon: '/icones/messaging.svg',
-        href: '/section/messaging',
-    },
-    {
-        id: 'knocard_link',
-        title: 'KnoCard Link',
-        icon: '/icones/knocard_link.svg',
-        href: '/section/knocard_link',
-    }, {
         id: 'media',
         title: 'Media',
         icon: '/icones/media.svg',
@@ -109,6 +98,16 @@ const list = [
         title: 'Team & Groups',
         icon: '/icones/team_&_groups.svg',
         href: '/section/team_&_groups',
+    }, {
+        id: 'messaging',
+        title: 'Messaging',
+        icon: '/icones/messaging.svg',
+        href: '/section/messaging',
+    }, {
+        id: 'knocard_link',
+        title: 'KnoCard Link',
+        icon: '/icones/knocard_link.svg',
+        href: '/section/knocard_link',
     }, {
         id: 'reporting',
         title: 'Reporting',

@@ -6,9 +6,13 @@ import Share from './icones/Share';
 import Knocard from './icones/Knocard';
 import Home from './icones/Home';
 
-const Navbar: React.FC = () => {
+const Navbar = ({
+    color
+}: {
+    color: string
+}) => {
     return (
-        <nav className='fixed bottom-0 left-0 w-full p-4 '>
+        <nav className='fixed bottom-6 left-0 w-full  '>
             <div className='flex justify-between items-center max-w-screen-lg mx-auto w-full'>
 
                 <Link href="/">
@@ -17,7 +21,7 @@ const Navbar: React.FC = () => {
                         whileTap={{ scale: 0.9 }}
                         className="flex flex-col items-center"
                     >
-                        <Home />
+                        <Home fill={color} />
                     </motion.button>
                 </Link>
                 <motion.button
@@ -26,7 +30,7 @@ const Navbar: React.FC = () => {
                     className="flex flex-col items-center"
                     onClick={() => {/* Add share functionality */ }}
                 >
-                    <Share />
+                    <Share fill={color} />
                 </motion.button>
                 <Link href="/">
                     <motion.div
@@ -34,7 +38,7 @@ const Navbar: React.FC = () => {
                         whileTap={{ scale: 0.9 }}
                         className="flex flex-col items-center"
                     >
-                        <Knocard />
+                        <Knocard fill={color} />
                     </motion.div>
                 </Link>
             </div>

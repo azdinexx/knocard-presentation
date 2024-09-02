@@ -12,21 +12,21 @@ function Page({ params }: { params: { section: string } }) {
     if (!info) return null
 
     return (
-        <div className={`flex flex-col h-screen `}
+        <div className={`flex flex-col h-screen w-full gap-10 p-4`}
             style={{
                 background: `url(${info.bg}) no-repeat center center fixed`,
-                backgroundSize: 'cover'
+                backgroundSize: 'cover',
             }}
         >
             <Header
+                color={info.nav_color}
                 section={info?.title || ''}
             />
-            <main className="max-w-screen-lg mx-auto w-full gap-10 grid grid-cols-2">
+            <main className="max-w-screen-lg mx-auto w-full gap-14 grid grid-cols-2">
                 <FAQ faqData={info.faq} />
-
                 <ImageSlider />
             </main>
-            <Navbar />
+            <Navbar color={info.nav_color} />
         </div>
     )
 }
@@ -40,6 +40,7 @@ const content = [
         icon: "/icones/messaging.svg",
         href: "/section/messaging",
         bg: "/bg/messaging.svg",
+        nav_color: '#007CB4',
         faq: [
             {
                 q: "What is the Messaging?",
@@ -71,6 +72,7 @@ const content = [
         icon: "/icones/knocard_link.svg",
         href: "/section/knocard_link",
         bg: "/bg/knocard_link.svg",
+        nav_color: "#fff",
         faq: [
             {
                 q: "What is the KnoCard Link?",
@@ -100,6 +102,7 @@ const content = [
         icon: "/icones/media.svg",
         href: "/section/media",
         bg: "/bg/media.svg",
+        nav_color: '#fff',
         faq: [
             {
                 q: "What is the Media?",
@@ -130,6 +133,7 @@ const content = [
         title: "Social",
         icon: "/icones/social.svg",
         href: "/section/social",
+        nav_color: '#fff',
         bg: "/bg/social.svg",
         faq: [
             {
@@ -161,6 +165,7 @@ const content = [
         title: "Feedback Forms",
         icon: "/icones/feedback_forms.svg",
         href: "/section/feedback_forms",
+        nav_color: '#007CB4',
         bg: "/bg/feedback_forms.svg",
         faq: [
             {
@@ -192,6 +197,7 @@ const content = [
         title: "Referrals",
         icon: "/icones/referrals.svg",
         href: "/section/referrals",
+        nav_color: '#fff',
         bg: "/bg/referrals.svg",
         faq: [
             {
@@ -224,6 +230,7 @@ const content = [
         title: "Scan Business Card",
         icon: "/icones/scan_business_card.svg",
         href: "/section/scan_business_card",
+        nav_color: '#fff',
         bg: "/bg/scan_business_card.svg",
         faq: [
             {
@@ -256,6 +263,7 @@ const content = [
         title: "Add New Prospect",
         icon: "/icones/add_new_prospect.svg",
         href: "/section/add_new_prospect",
+        nav_color: '#fff',
         bg: "/bg/add_new_prospect.svg",
         faq: [
             {
@@ -286,6 +294,7 @@ const content = [
         title: "Share",
         icon: "/icones/share.svg",
         href: "/section/share",
+        nav_color: '#007CB4',
         bg: "/bg/share.svg",
         faq: [
             {
@@ -316,6 +325,7 @@ const content = [
         title: "Team & Groups",
         icon: "/icones/team_&_groups.svg",
         href: "/section/team_&_groups",
+        nav_color: '#fff',
         bg: "/bg/team_&_groups.svg",
         faq: [
             {
@@ -349,6 +359,7 @@ const content = [
         title: "Reporting",
         icon: "/icones/reporting.svg",
         href: "/section/reporting",
+        nav_color: '#007CB4',
         bg: "/bg/reporting.svg",
         faq: [
             {
@@ -380,6 +391,7 @@ const content = [
         title: "Pipeline",
         icon: "/icones/pipeline.svg",
         href: "/section/pipeline",
+        nav_color: '#fff',
         bg: "/bg/pipeline.svg",
         faq: [
             {
