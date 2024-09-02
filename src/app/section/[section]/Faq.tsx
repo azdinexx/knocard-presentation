@@ -16,7 +16,7 @@ const FAQ: React.FC<{ faqData: FAQItem[] }> = ({
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <div className="w-1/2 p-4 overflow-y-auto">
+        <div className="w-full  overflow-y-auto">
             {faqData.map((item, index) => (
                 <motion.div
                     key={index}

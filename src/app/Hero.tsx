@@ -75,15 +75,15 @@ const list = [
         icon: '/icones/media.svg',
         href: '/section/media',
     }, {
-        id: 'qr_code',
-        title: 'QR Code',
-        icon: '/icones/qr_code.svg',
-        href: '/section/qr_code',
+        id: 'social',
+        title: 'Social',
+        icon: '/icones/social.svg',
+        href: '/section/social',
     }, {
-        id: 'preferred_partners',
-        title: 'Preferred Partners',
-        icon: '/icones/preferred_partners.svg',
-        href: '/section/preferred_partners',
+        id: 'feedback_forms',
+        title: 'Feedback Forms',
+        icon: '/icones/feedback_forms.svg',
+        href: '/section/feedback_forms',
     }, {
         id: 'referrals',
         title: 'Referrals',
@@ -110,10 +110,10 @@ const list = [
         icon: '/icones/team_&_groups.svg',
         href: '/section/team_&_groups',
     }, {
-        id: 'text_sharing',
-        title: 'Text Sharing',
-        icon: '/icones/text_sharing.svg',
-        href: '/section/text_sharing',
+        id: 'reporting',
+        title: 'Reporting',
+        icon: '/icones/reporting.svg',
+        href: '/section/reporting',
     }, {
         id: 'pipeline',
         title: 'Pipeline',
