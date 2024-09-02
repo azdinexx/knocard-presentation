@@ -3,19 +3,39 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import ControlScrolling from "@/components/ControlScrolling";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
+    const [windowSize, setWindowSize] = useState({
+        width: typeof window !== 'undefined' ? window.innerWidth : 0,
+        height: typeof window !== 'undefined' ? window.innerHeight : 0,
+    });
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const circleRadius = windowSize.width < 768 ? 150 : 320;
+
     return (
-        <main className="relative bg-neutral-50 w-screen h-screen flex justify-center items-center">
+        <main className="relative bg-neutral-50 w-screen h-screen flex justify-center items-center pb-28">
             <div
-                className="bg-[url('/knocard.svg')] bg-no-repeat bg-center bg-contain w-[300px] h-[300px] md:w-[412px] md:h-[412px] relative transition-all duration-300"
+                className="bg-[url('/knocard.svg')] bg-no-repeat bg-center bg-contain w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[350px] md:h-[350px] lg:w-[412px] lg:h-[412px] relative transition-all duration-300"
             >
                 <Image
                     src={'/phone.png'}
                     alt="phone"
-                    width={220}
-                    height={220}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[220px] "
+                    width={200}
+                    height={200}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] md:w-[220px] hidden md:block"
                 />
                 {list.map((item, i) => (
                     <motion.button
@@ -25,28 +45,28 @@ export default function Hero() {
                             transform: 'translate(-50%, -50%)',
                         }}
                         animate={{
-                            top: `calc(50% + 350px * ${Math.sin((i * 2 * Math.PI) / 12)})`,
-                            left: `calc(50% + 350px * ${Math.cos((i * 2 * Math.PI) / 12)})`,
+                            top: `calc(50% + ${circleRadius}px * ${Math.sin((i * 2 * Math.PI) / 12)})`,
+                            left: `calc(50% + ${circleRadius}px * ${Math.cos((i * 2 * Math.PI) / 12)})`,
                         }}
                         key={i}
-                        className="absolute flex flex-col items-center justify-center hover:bg-neutral-100 rounded-full p-2 "
+                        className="absolute flex flex-col items-center justify-center hover:bg-neutral-100/50 rounded-xl md:p-2"
                         style={{
-                            top: `calc(50% + 350px * ${Math.sin((i * 2 * Math.PI) / 12)})`,
-                            left: `calc(50% + 350px * ${Math.cos((i * 2 * Math.PI) / 12)})`,
+                            top: `calc(50% + ${circleRadius}px * ${Math.sin((i * 2 * Math.PI) / 12)})`,
+                            left: `calc(50% + ${circleRadius}px * ${Math.cos((i * 2 * Math.PI) / 12)})`,
                             transform: 'translate(-50%, -50%)',
                         }}
                     >
-                        <Link href={item.href}>
-                            <div className=" w-40 h-20 overflow-hidden flex items-center justify-center">
+                        <Link href={item.href} className="flex flex-col items-center justify-center">
+                            <div className="w-10 h-10 md:w-40 md:h-20 overflow-hidden flex items-center justify-center">
                                 <Image
                                     src={item.icon}
                                     alt={item.title}
-                                    width={80}
-                                    height={80}
-                                    className="  overflow-hidden"
+                                    width={windowSize.width < 768 ? 40 : 80}
+                                    height={windowSize.width < 768 ? 40 : 80}
+                                    className="overflow-hidden"
                                 />
                             </div>
-                            <p className="text-center text-sm font-medium">{item.title}</p>
+                            <p className="text-center text-xs md:text-sm font-medium max-w-20 md:max-w-40">{item.title}</p>
                         </Link>
                     </motion.button>
                 ))}
@@ -55,7 +75,6 @@ export default function Hero() {
         </main>
     );
 }
-
 
 const list = [
     {
