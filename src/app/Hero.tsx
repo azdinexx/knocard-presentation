@@ -61,8 +61,8 @@ export default function Hero() {
                                 <Image
                                     src={item.icon}
                                     alt={item.title}
-                                    width={windowSize.width < 768 ? 40 : 80}
-                                    height={windowSize.width < 768 ? 40 : 80}
+                                    width={windowSize.width < 768 ? 70 : 100}
+                                    height={windowSize.width < 768 ? 70 : 100}
                                     className="overflow-hidden"
                                 />
                             </div>
