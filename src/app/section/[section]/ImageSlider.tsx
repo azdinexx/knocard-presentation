@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import React, { useState, useRef } from 'react'
+import FullscreenImageSlider from './FullScreen'
 
 function ImageSlider({ images, video }: { images: string[], video: string }) {
     const [index, setIndex] = useState(0)
@@ -47,7 +48,7 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                 </div>
                 {
                     fullscreen && (
-                        <FullscreenImageSlider images={images} index={index} setIndex={setIndex} />
+                        <FullscreenImageSlider setFullscreen={setFullscreen} images={images} index={index} setIndex={setIndex} />
                     )
                 }
             </div>
@@ -117,40 +118,3 @@ function Controls({ index, setIndex, images }: { index: number, setIndex: (index
     )
 }
 
-function FullscreenImageSlider({ images, index, setIndex }: { images: string[], index: number, setIndex: (index: number) => void }) {
-
-    return (
-        <div className='fixed top-0 left-0 z-50 w-screen h-screen bg-gradient-to-r from-[#007CB4] to-[#00BAF2] flex flex-col justify-center items-center'>
-            <p className='text-white text-2xl font-bold'>
-                {
-                    images[index].split('/').pop()
-                }
-            </p>
-            <div className='flex flex-col gap-10 justify-center items-center'>
-
-                <Image
-                    src={images[index]}
-                    alt={`Image ${index + 1}`}
-                    objectFit="contain"
-                    className="rounded-lg w-[200px]"
-                    width={200}
-                    height={200}
-                />
-                <ul className='flex justify-center gap-10'>
-                    {images.map((image, i) => (
-                        <li key={i} onClick={() => setIndex(i)}>
-                            <Image
-                                src={image}
-                                alt={`Image ${i + 1}`}
-                                width={100}
-                                height={100}
-                                className='w-20 h-20 object-cover rounded-lg'
-                            />
-                        </li>
-                    ))}
-                </ul>
-                <Controls index={index} setIndex={setIndex} images={images} />
-            </div>
-        </div>
-    )
-}
