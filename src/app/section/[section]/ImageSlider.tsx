@@ -1,16 +1,35 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import FullscreenImageSlider from './FullScreen'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 
 function ImageSlider({ images, video }: { images: string[], video: string }) {
     const [index, setIndex] = useState(0)
     const [fullscreen, setFullscreen] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
+    const controls = useAnimation()
+    const constraintsRef = useRef(null)
+
+    useEffect(() => {
+        const checkIfMobile = () => setIsMobile(window.innerWidth <= 768)
+        checkIfMobile()
+        window.addEventListener('resize', checkIfMobile)
+        return () => window.removeEventListener('resize', checkIfMobile)
+    }, [])
+
+    const handleDragEnd = (event: any, info: any) => {
+        if (info.offset.x > 100 && index > 0) {
+            setIndex(index - 1)
+        } else if (info.offset.x < -100 && index < images.length - 1) {
+            setIndex(index + 1)
+        }
+        controls.start({ x: 0 })
+    }
+
     return (
         <>
-
             <motion.div
                 className='w-full h-full'
                 initial={{ opacity: 0 }}
@@ -18,9 +37,10 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                 transition={{ duration: 0.5 }}
             >
                 <motion.div
-                    className='w-full aspect-[4/3] bg-blue-300 rounded-lg relative'
-                    whileHover={{ scale: 1.02 }}
+                    className='w-full aspect-[4/3] bg-blue-300 rounded-lg relative overflow-hidden'
+                    whileHover={{ scale: isMobile ? 1 : 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
+                    ref={constraintsRef}
                 >
                     <AnimatePresence mode="wait">
                         {video && (
@@ -38,9 +58,13 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                             <motion.div
                                 key={images[index]}
                                 initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.5 }}
+                                drag={isMobile ? "x" : false}
+                                dragConstraints={constraintsRef}
+                                dragElastic={0.2}
+                                onDragEnd={handleDragEnd}
+                                animate={controls}
                             >
                                 <Image
                                     src={images[index]}
@@ -77,35 +101,39 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                     </motion.button>
 
                 </motion.div>
-                <motion.ul
-                    className='grid grid-cols-3 gap-4 p-4'
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                >
-                    {[
-                        (index - 1 + images.length) % images.length,
-                        index,
-                        (index + 1) % images.length
-                    ].map((i) => (
-                        <motion.li
-                            key={i}
-                            className='aspect-square relative cursor-pointer'
-                            onClick={() => setIndex(i)}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                {!isMobile && (
+                    <>
+                        <motion.ul
+                            className='grid grid-cols-3 gap-4 p-4'
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.5 }}
                         >
-                            <Image
-                                src={images[i]}
-                                alt={`Image ${i + 1}`}
-                                layout="fill"
-                                objectFit="cover"
-                                className="rounded-lg"
-                            />
-                        </motion.li>
-                    ))}
-                </motion.ul>
-                <Controls index={index} setIndex={setIndex} images={images} />
+                            {[
+                                (index - 1 + images.length) % images.length,
+                                index,
+                                (index + 1) % images.length
+                            ].map((i) => (
+                                <motion.li
+                                    key={i}
+                                    className='aspect-square relative cursor-pointer'
+                                    onClick={() => setIndex(i)}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <Image
+                                        src={images[i]}
+                                        alt={`Image ${i + 1}`}
+                                        layout="fill"
+                                        objectFit="cover"
+                                        className="rounded-lg"
+                                    />
+                                </motion.li>
+                            ))}
+                        </motion.ul>
+                        <Controls index={index} setIndex={setIndex} images={images} />
+                    </>
+                )}
             </motion.div>
             {fullscreen && (
                 <FullscreenImageSlider setFullscreen={setFullscreen} images={images} index={index} setIndex={setIndex} />

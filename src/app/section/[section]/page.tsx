@@ -22,7 +22,7 @@ function Page({ params }: { params: { section: string } }) {
                 color={info.nav_color}
                 section={info?.title || ''}
             />
-            <main className="max-w-5xl mx-auto w-full gap-14 grid grid-cols-2">
+            <main className="max-w-5xl mx-auto w-full gap-2 md:gap-14 grid md:grid-cols-2">
                 <FAQ faqData={info.faq} />
                 <ImageSlider
                     images={info.images}
