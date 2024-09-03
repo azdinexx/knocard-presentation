@@ -5,7 +5,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import FullscreenImageSlider from './FullScreen'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 
-function ImageSlider({ images, video }: { images: string[], video: string }) {
+function ImageSlider({ media }: { media: string[] }) {
     const [index, setIndex] = useState(0)
     const [fullscreen, setFullscreen] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
@@ -22,10 +22,10 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
     const handleDragEnd = (event: any, info: any) => {
         if (info.offset.x > 100 && index > 0) {
             setIndex(index - 1)
-        } else if (info.offset.x < -100 && index < images.length - 1) {
+        } else if (info.offset.x < -100 && index < media.length - 1) {
             setIndex(index + 1)
         }
-        controls.start({ x: 0 })
+        controls.start({ x: 0, opacity: 1 })
     }
 
     return (
@@ -43,38 +43,39 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                     ref={constraintsRef}
                 >
                     <AnimatePresence mode="wait">
-                        {video && (
-                            <motion.video
-                                key="video"
-                                src={video}
-                                className='w-full h-full object-cover rounded-lg'
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.5 }}
-                            />
-                        )}
-                        {!video && images.length > 0 && (
-                            <motion.div
-                                key={images[index]}
-                                initial={{ opacity: 0 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.5 }}
-                                drag={isMobile ? "x" : false}
-                                dragConstraints={constraintsRef}
-                                dragElastic={0.2}
-                                onDragEnd={handleDragEnd}
-                                animate={controls}
-                            >
-                                <Image
-                                    src={images[index]}
-                                    alt={`Image ${index + 1}`}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    className="rounded-lg"
+
+                        {
+                            media[0].endsWith('.mp4') ?
+                                <motion.video
+                                    key="video"
+                                    src={media[0]}
+                                    className='w-full h-full object-cover rounded-lg'
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.5 }}
                                 />
-                            </motion.div>
-                        )}
+                                :
+                                <motion.div
+                                    key={media[index]}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.5 }}
+                                    drag={isMobile ? "x" : false}
+                                    dragConstraints={constraintsRef}
+                                    dragElastic={0.2}
+                                    onDragEnd={handleDragEnd}
+                                >
+                                    <Image
+                                        src={media[index]}
+                                        alt={`Image ${index + 1}`}
+                                        layout="fill"
+                                        objectFit="cover"
+                                        className="rounded-lg"
+                                    />
+                                </motion.div>
+                        }
                     </AnimatePresence>
 
                     <motion.div
@@ -83,7 +84,7 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.3 }}
                     >
-                        {index + 1} of {images.length}
+                        {index + 1} of {media.length}
                     </motion.div>
 
                     <motion.button
@@ -110,9 +111,9 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                             transition={{ delay: 0.5 }}
                         >
                             {[
-                                (index - 1 + images.length) % images.length,
+                                (index - 1 + media.length) % media.length,
                                 index,
-                                (index + 1) % images.length
+                                (index + 1) % media.length
                             ].map((i) => (
                                 <motion.li
                                     key={i}
@@ -122,7 +123,7 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     <Image
-                                        src={images[i]}
+                                        src={media[i]}
                                         alt={`Image ${i + 1}`}
                                         layout="fill"
                                         objectFit="cover"
@@ -131,12 +132,12 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                                 </motion.li>
                             ))}
                         </motion.ul>
-                        <Controls index={index} setIndex={setIndex} images={images} />
+                        <Controls index={index} setIndex={setIndex} media={media} />
                     </>
                 )}
             </motion.div>
             {fullscreen && (
-                <FullscreenImageSlider setFullscreen={setFullscreen} images={images} index={index} setIndex={setIndex} />
+                <FullscreenImageSlider setFullscreen={setFullscreen} images={media} index={index} setIndex={setIndex} />
             )}
         </>
     )
@@ -144,7 +145,7 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
 
 export default ImageSlider
 
-function Controls({ index, setIndex, images }: { index: number, setIndex: (index: number) => void, images: string[] }) {
+function Controls({ index, setIndex, media }: { index: number, setIndex: (index: number) => void, media: string[] }) {
     return (
         <motion.div
             className='flex justify-center gap-10'
@@ -167,7 +168,7 @@ function Controls({ index, setIndex, images }: { index: number, setIndex: (index
             <motion.button
                 onClick={() => setIndex(index + 1)}
                 className='disabled:opacity-50'
-                disabled={index === images.length - 1}
+                disabled={index === media.length - 1}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
             >
