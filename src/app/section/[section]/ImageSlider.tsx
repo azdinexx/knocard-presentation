@@ -42,40 +42,33 @@ function ImageSlider({ media }: { media: string[] }) {
                     transition={{ type: "spring", stiffness: 300 }}
                     ref={constraintsRef}
                 >
-                    <AnimatePresence mode="wait">
-
-                        {
-                            media[0].endsWith('.mp4') ?
-                                <motion.video
-                                    key="video"
-                                    src={media[0]}
-                                    className='w-full h-full object-cover rounded-lg'
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.5 }}
+                    <AnimatePresence initial={false}>
+                        {media.map((image, i) => (
+                            <motion.div
+                                key={image}
+                                style={{
+                                    position: 'absolute',
+                                    width: '100%',
+                                    height: '100%',
+                                }}
+                                initial={{ x: i > index ? '100%' : '-100%' }}
+                                animate={{ x: i === index ? 0 : i < index ? '-100%' : '100%' }}
+                                exit={{ x: i < index ? '-100%' : '100%' }}
+                                transition={{ duration: 0.5 }}
+                                drag={isMobile ? "x" : false}
+                                dragConstraints={constraintsRef}
+                                dragElastic={0.2}
+                                onDragEnd={handleDragEnd}
+                            >
+                                <Image
+                                    src={image}
+                                    alt={`Image ${i + 1}`}
+                                    layout="fill"
+                                    objectFit="cover"
+                                    className="rounded-lg"
                                 />
-                                :
-                                <motion.div
-                                    key={media[index]}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    drag={isMobile ? "x" : false}
-                                    dragConstraints={constraintsRef}
-                                    dragElastic={0.2}
-                                    onDragEnd={handleDragEnd}
-                                >
-                                    <Image
-                                        src={media[index]}
-                                        alt={`Image ${index + 1}`}
-                                        layout="fill"
-                                        objectFit="cover"
-                                        className="rounded-lg"
-                                    />
-                                </motion.div>
-                        }
+                            </motion.div>
+                        ))}
                     </AnimatePresence>
 
                     <motion.div

@@ -19,7 +19,8 @@ export default function FullscreenImageSlider({ images, index, setIndex, setFull
                 >
                     {images[index].split('/').pop()}
                 </motion.p>
-                <div className="flex flex-col items-center justify-center gap-4 h-[65%] overflow-auto mt-10">
+
+                <div className="flex flex-col items-center justify-center gap-4 h-[71%] overflow-auto mt-10">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={index}
