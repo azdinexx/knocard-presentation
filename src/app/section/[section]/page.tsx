@@ -24,7 +24,10 @@ function Page({ params }: { params: { section: string } }) {
             />
             <main className="max-w-screen-lg mx-auto w-full gap-14 grid grid-cols-2">
                 <FAQ faqData={info.faq} />
-                <ImageSlider />
+                <ImageSlider
+                    images={info.images}
+                    video={info.video || ''}
+                />
             </main>
             <Navbar color={info.nav_color} />
         </div>
@@ -65,6 +68,13 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/messaging/Messaging1.PNG",
+            "/images/messaging/Messaging2.PNG",
+            "/images/messaging/Messaging3_CreateGroup.PNG",
+            "/images/messaging/Messaging4_AddUsers.PNG",
+            "/images/messaging/Messaging5_EditGroup.PNG",
+        ]
     },
     {
         id: "knocard_link",
@@ -95,6 +105,13 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/knocard-link/Link1_SendRequest.PNG",
+            "/images/knocard-link/Link2_ReceiveRequest.PNG",
+            "/images/knocard-link/Link3_Consent.PNG",
+            "/images/knocard-link/Link4_Activity.PNG",
+            "/images/knocard-link/Link5_ViewReports.PNG",
+        ]
     },
     {
         id: "media",
@@ -127,6 +144,13 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/media/Media1.PNG",
+            "/images/media/Media2_AddMedia.PNG",
+            "/images/media/Media3_ShareWithForm.PNG",
+            "/images/media/Media4_ShareOptions.PNG",
+            "/images/media/Media5_SelectTopic.PNG",
+        ]
     },
     {
         id: "social",
@@ -159,6 +183,13 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/social/Social1.PNG",
+            "/images/social/Social2_AddPost.PNG",
+            "/images/social/Social3_PostFromMedia.PNG",
+            "/images/social/Social4_ShareOptions.PNG",
+            "/images/social/Social5_CopyLink.PNG",
+        ]
     },
     {
         id: "feedback_forms",
@@ -191,6 +222,14 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/feedback-forms/Forms1_Attach.PNG",
+            "/images/feedback-forms/Forms2_CreateCustomForm.PNG",
+            "/images/feedback-forms/Forms3_RecipientSubmission.PNG",
+            "/images/feedback-forms/Forms4_ScheduleCall.PNG",
+            "/images/feedback-forms/Forms5_Calendly.PNG",
+            "/images/feedback-forms/Forms6_ViewResults.PNG",
+        ]
     },
     {
         id: "referrals",
@@ -224,6 +263,12 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/referral/Referral1.PNG",
+            "/images/referral/Referral2_Share.PNG",
+            "/images/referral/Referral3_Receive.PNG",
+            "/images/referral/Referrals4_View.PNG",
+        ]
     },
     {
         id: "scan_business_card",
@@ -257,6 +302,13 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/scan-business-card/Scan1.PNG",
+            "/images/scan-business-card/Scan2.PNG",
+            "/images/scan-business-card/Scan3_OCR.PNG",
+            "/images/scan-business-card/Scan4_InfoAdded.PNG",
+            "/images/scan-business-card/Scan5_SendText.PNG",
+        ]
     },
     {
         id: "add_new_prospect",
@@ -288,7 +340,15 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/add-prospect-client/AddPros1_Share.PNG",
+            "/images/add-prospect-client/AddPros2_Pipeline.PNG",
+            "/images/add-prospect-client/AddPros3_QRForm.PNG",
+            "/images/add-prospect-client/AddPros4_QRwithForm.PNG",
+            "/images/add-prospect-client/AddPros5_ScanBusCard.PNG",
+        ]
     },
+
     {
         id: "share",
         title: "Share",
@@ -319,6 +379,14 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/share/Share1.PNG",
+            "/images/share/Share2_Media.PNG",
+            "/images/share/Share3_NewContact.PNG",
+            "/images/share/Share4_Referral.PNG",
+            "/images/share/Share5_LandingPage.PNG",
+            "/images/share/Share6_TextShare.PNG",
+        ]
     },
     {
         id: "team_&_groups",
@@ -353,6 +421,13 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/team/Team1.PNG",
+            "/images/team/Team2_MediaAndLandPg.PNG",
+            "/images/team/Team3_Add2Team.PNG",
+            "/images/team/Team4_Social.PNG",
+            "/images/team/Team5_Header.PNG",
+        ]
     },
     {
         id: "reporting",
@@ -385,6 +460,14 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/reporting/Reporting1.PNG",
+            "/images/reporting/Reporting2_PageViews.PNG",
+            "/images/reporting/Reporting3_VideoViews.PNG",
+            "/images/reporting/Reporting4_Media.PNG",
+            "/images/reporting/Reporting5_LandingPages.PNG",
+            "/images/reporting/Reporting6_NewProspects.PNG",
+        ]
     },
     {
         id: "pipeline",
@@ -417,5 +500,14 @@ const content = [
                 ],
             },
         ],
+        images: [
+            "/images/pipeline/Pipeline1.PNG",
+            "/images/pipeline/Pipeline2_AddProspect.PNG",
+            "/images/pipeline/Pipeline3_ContactDisposition.PNG",
+            "/images/pipeline/Pipeline4_ViewActivity.PNG",
+            "/images/pipeline/Pipeline5_AddFollowUp.PNG",
+            "/images/pipeline/Pipeline6_AddNotes.PNG",
+        ],
+        video: "/images/pipeline/PipelinePromoVid.mp4"
     },
 ];
