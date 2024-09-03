@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import React, { useState, useRef, useEffect } from 'react'
-import FullscreenImageSlider from './FullScreen'
+import FullscreenImageSlider from './FullscreenImageSlider'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 
 function ImageSlider({ media }: { media: string[] }) {
