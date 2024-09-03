@@ -31,11 +31,11 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                 )}
 
 
-                <div className='absolute top-2 right-2 text-blue-500 bg-white/70 px-2 rounded-md'>
+                <div className='absolute top-2 right-2 text-blue-500 shadow-sm border border-blue-500/20 bg-white/70 px-2 rounded-md'>
                     {index + 1} of {images.length}
                 </div>
 
-                <div className='absolute bottom-2 left-2 bg-white/70 rounded-md p-2'
+                <button className='absolute bottom-2 left-2 bg-white/70 shadow-md border border-blue-500/20 rounded-md p-2'
                     data-tooltip-content="Fullscreen"
                     onClick={() => setFullscreen(!fullscreen)}
                 >
@@ -45,7 +45,7 @@ function ImageSlider({ images, video }: { images: string[], video: string }) {
                         <path d="M11.0024 2.2168H9.1316C4.45473 2.2168 2.58398 4.08755 2.58398 8.76442V14.3767C2.58398 19.0535 4.45473 20.9243 9.1316 20.9243H14.7438C19.4207 20.9243 21.2915 19.0535 21.2915 14.3767V12.5059" stroke="#007CB4" stroke-width="1.68367" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
 
-                </div>
+                </button>
                 {
                     fullscreen && (
                         <FullscreenImageSlider setFullscreen={setFullscreen} images={images} index={index} setIndex={setIndex} />
@@ -101,6 +101,7 @@ function Controls({ index, setIndex, images }: { index: number, setIndex: (index
             <button
                 onClick={() => setIndex(index - 1)}
                 disabled={index === 0}
+                className='disabled:opacity-50'
             ><svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="48" height="48" rx="24" transform="matrix(-1 0 0 1 48 0.367188)" fill="white" />
                     <path d="M27.0904 33.0367C27.2804 33.0367 27.4704 32.9667 27.6204 32.8167C27.9104 32.5267 27.9104 32.0467 27.6204 31.7567L21.1004 25.2367C20.6204 24.7567 20.6204 23.9767 21.1004 23.4967L27.6204 16.9767C27.9104 16.6867 27.9104 16.2067 27.6204 15.9167C27.3304 15.6267 26.8504 15.6267 26.5604 15.9167L20.0404 22.4367C19.5304 22.9467 19.2404 23.6367 19.2404 24.3667C19.2404 25.0967 19.5204 25.7867 20.0404 26.2967L26.5604 32.8167C26.7104 32.9567 26.9004 33.0367 27.0904 33.0367Z" fill="#007CB4" />
@@ -108,6 +109,7 @@ function Controls({ index, setIndex, images }: { index: number, setIndex: (index
             </button>
             <button
                 onClick={() => setIndex(index + 1)}
+                className='disabled:opacity-50'
                 disabled={index === images.length - 1}
             ><svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect y="0.367188" width="48" height="48" rx="24" fill="white" />

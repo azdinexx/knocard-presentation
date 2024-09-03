@@ -21,7 +21,7 @@ const Navbar = ({
                         whileTap={{ scale: 0.9 }}
                         className="flex flex-col items-center"
                     >
-                        <Home fill={color} />
+                        <Home fill={color} width={60} height={60} />
                     </motion.button>
                 </Link>
                 <motion.button
@@ -30,7 +30,7 @@ const Navbar = ({
                     className="flex flex-col items-center"
                     onClick={() => {/* Add share functionality */ }}
                 >
-                    <Share fill={color} />
+                    <Share fill={color} width={60} height={60} />
                 </motion.button>
                 <Link href="/">
                     <motion.div
@@ -38,7 +38,7 @@ const Navbar = ({
                         whileTap={{ scale: 0.9 }}
                         className="flex flex-col items-center"
                     >
-                        <Knocard fill={color} />
+                        <Knocard fill={color} width={60} height={60} />
                     </motion.div>
                 </Link>
             </div>
