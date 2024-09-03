@@ -25,7 +25,9 @@ function Page({ params }: { params: { section: string } }) {
             <main className="max-w-5xl mx-auto w-full gap-2 md:gap-14 grid md:grid-cols-2">
                 <FAQ faqData={info.faq} />
                 <ImageSlider
-                    media={info.media}
+                    media={info.
+                        images
+                    }
                 />
             </main>
             <Navbar color={info.nav_color} />
@@ -67,12 +69,18 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/messaging/Messaging1.PNG",
             "/images/messaging/Messaging2.PNG",
             "/images/messaging/Messaging3_CreateGroup.PNG",
             "/images/messaging/Messaging4_AddUsers.PNG",
             "/images/messaging/Messaging5_EditGroup.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
     {
@@ -104,12 +112,18 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/knocard-link/Link1_SendRequest.PNG",
             "/images/knocard-link/Link2_ReceiveRequest.PNG",
             "/images/knocard-link/Link3_Consent.PNG",
             "/images/knocard-link/Link4_Activity.PNG",
             "/images/knocard-link/Link5_ViewReports.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
     {
@@ -143,12 +157,18 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/media/Media1.PNG",
             "/images/media/Media2_AddMedia.PNG",
             "/images/media/Media3_ShareWithForm.PNG",
             "/images/media/Media4_ShareOptions.PNG",
             "/images/media/Media5_SelectTopic.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
     {
@@ -182,12 +202,18 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/social/Social1.PNG",
             "/images/social/Social2_AddPost.PNG",
             "/images/social/Social3_PostFromMedia.PNG",
             "/images/social/Social4_ShareOptions.PNG",
             "/images/social/Social5_CopyLink.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
     {
@@ -221,13 +247,19 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/feedback-forms/Forms1_Attach.PNG",
             "/images/feedback-forms/Forms2_CreateCustomForm.PNG",
             "/images/feedback-forms/Forms3_RecipientSubmission.PNG",
             "/images/feedback-forms/Forms4_ScheduleCall.PNG",
             "/images/feedback-forms/Forms5_Calendly.PNG",
             "/images/feedback-forms/Forms6_ViewResults.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
     {
@@ -262,11 +294,17 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/referral/Referral1.PNG",
             "/images/referral/Referral2_Share.PNG",
             "/images/referral/Referral3_Receive.PNG",
             "/images/referral/Referrals4_View.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
     {
@@ -301,12 +339,18 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/scan-business-card/Scan1.PNG",
             "/images/scan-business-card/Scan2.PNG",
             "/images/scan-business-card/Scan3_OCR.PNG",
             "/images/scan-business-card/Scan4_InfoAdded.PNG",
             "/images/scan-business-card/Scan5_SendText.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
     {
@@ -339,12 +383,18 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/add-prospect-client/AddPros1_Share.PNG",
             "/images/add-prospect-client/AddPros2_Pipeline.PNG",
             "/images/add-prospect-client/AddPros3_QRForm.PNG",
             "/images/add-prospect-client/AddPros4_QRwithForm.PNG",
             "/images/add-prospect-client/AddPros5_ScanBusCard.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
 
@@ -378,13 +428,19 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/share/Share1.PNG",
             "/images/share/Share2_Media.PNG",
             "/images/share/Share3_NewContact.PNG",
             "/images/share/Share4_Referral.PNG",
             "/images/share/Share5_LandingPage.PNG",
             "/images/share/Share6_TextShare.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
     {
@@ -420,12 +476,18 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/team/Team1.PNG",
             "/images/team/Team2_MediaAndLandPg.PNG",
             "/images/team/Team3_Add2Team.PNG",
             "/images/team/Team4_Social.PNG",
             "/images/team/Team5_Header.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
     {
@@ -459,13 +521,19 @@ const content = [
                 ],
             },
         ],
-        media: [
+        images: [
             "/images/reporting/Reporting1.PNG",
             "/images/reporting/Reporting2_PageViews.PNG",
             "/images/reporting/Reporting3_VideoViews.PNG",
             "/images/reporting/Reporting4_Media.PNG",
             "/images/reporting/Reporting5_LandingPages.PNG",
             "/images/reporting/Reporting6_NewProspects.PNG",
+        ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
         ]
     },
     {
@@ -499,8 +567,7 @@ const content = [
                 ],
             },
         ],
-        media: [
-            "/images/pipeline/PipelinePromoVid.mp4",
+        images: [
             "/images/pipeline/Pipeline1.PNG",
             "/images/pipeline/Pipeline2_filter.PNG",
             "/images/pipeline/Pipeline3_ContactDisposition.PNG",
@@ -508,5 +575,11 @@ const content = [
             "/images/pipeline/Pipeline5_AddFollowUp.PNG",
             "/images/pipeline/Pipeline6_AddNotes.PNG",
         ],
+        video: [
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+            "/images/pipeline/PipelinePromoVid.mp4",
+        ]
     },
 ];

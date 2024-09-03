@@ -31,14 +31,13 @@ function ImageSlider({ media }: { media: string[] }) {
     return (
         <>
             <motion.div
-                className='w-full h-full'
+                className='w-full h-full flex flex-col justify-center gap-2'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
             >
                 <motion.div
                     className='w-full aspect-[4/3] bg-blue-300 rounded-lg relative overflow-hidden'
-                    whileHover={{ scale: isMobile ? 1 : 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
                     ref={constraintsRef}
                 >
@@ -95,10 +94,23 @@ function ImageSlider({ media }: { media: string[] }) {
                     </motion.button>
 
                 </motion.div>
+                <div className="flex gap-4 py-2 mx-auto">
+                    {media.map((_, i) => (
+                        <motion.div
+                            key={i}
+                            className="w-2 h-2 rounded-full"
+                            style={{
+                                backgroundColor: i === index ? '#007CB4' : 'white'
+                            }}
+                            initial={false}
+                            animate={i === index ? { scale: 1.2 } : { scale: 1 }}
+                        ></motion.div>
+                    ))}
+                </div>
                 {!isMobile && (
                     <>
                         <motion.ul
-                            className='grid grid-cols-3 gap-4 p-4'
+                            className='grid grid-cols-3 gap-4 mx-16 '
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.5 }}
@@ -141,7 +153,7 @@ export default ImageSlider
 function Controls({ index, setIndex, media }: { index: number, setIndex: (index: number) => void, media: string[] }) {
     return (
         <motion.div
-            className='flex justify-center gap-10'
+            className='flex justify-center gap-10 mt-3'
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7 }}
