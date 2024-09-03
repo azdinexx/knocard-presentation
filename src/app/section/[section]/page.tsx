@@ -12,7 +12,7 @@ function Page({ params }: { params: { section: string } }) {
     if (!info) return null
 
     return (
-        <div className={`flex flex-col h-screen w-full gap-10 p-4`}
+        <div className={`flex flex-col  h-screen overflow-hidden w-full gap-10 p-4`}
             style={{
                 background: `url(${info.bg}) no-repeat center center fixed`,
                 backgroundSize: 'cover',
@@ -22,7 +22,7 @@ function Page({ params }: { params: { section: string } }) {
                 color={info.nav_color}
                 section={info?.title || ''}
             />
-            <main className="max-w-5xl mx-auto w-full gap-2 md:gap-14 grid md:grid-cols-2">
+            <main className="max-w-5xl mx-auto w-full gap-2 md:gap-14 grid md:grid-cols-2 place-items-start">
                 <FAQ faqData={info.faq} />
                 <ImageSlider
                     media={info.
