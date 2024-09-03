@@ -502,7 +502,7 @@ const content = [
         ],
         images: [
             "/images/pipeline/Pipeline1.PNG",
-            "/images/pipeline/Pipeline2_AddProspect.PNG",
+            "/images/pipeline/Pipeline2_filter.PNG",
             "/images/pipeline/Pipeline3_ContactDisposition.PNG",
             "/images/pipeline/Pipeline4_ViewActivity.PNG",
             "/images/pipeline/Pipeline5_AddFollowUp.PNG",
