@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import FAQ from './Faq'
-import ImageSlider from './ImageSlider'
+import ImageSlider from './Slider'
 import Navbar from './NavBar'
 
 function Page({ params }: { params: { section: string } }) {
@@ -25,9 +25,8 @@ function Page({ params }: { params: { section: string } }) {
             <main className="max-w-5xl mx-auto w-full gap-2 md:gap-14 grid md:grid-cols-2 place-items-start">
                 <FAQ faqData={info.faq} />
                 <ImageSlider
-                    media={info.
-                        images
-                    }
+                    images={info.images}
+                    videos={info.video}
                 />
             </main>
             <Navbar color={info.nav_color} />
@@ -77,10 +76,7 @@ const content = [
             "/images/messaging/Messaging5_EditGroup.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/messaging/how to .mp4",
         ]
     },
     {
@@ -120,10 +116,7 @@ const content = [
             "/images/knocard-link/Link5_ViewReports.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/knocard-link/how to .mp4",
         ]
     },
     {
@@ -165,10 +158,7 @@ const content = [
             "/images/media/Media5_SelectTopic.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/media/how to .mp4",
         ]
     },
     {
@@ -210,10 +200,7 @@ const content = [
             "/images/social/Social5_CopyLink.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/social/how to .mp4",
         ]
     },
     {
@@ -256,10 +243,7 @@ const content = [
             "/images/feedback-forms/Forms6_ViewResults.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/feedback-forms/how to .mp4",
         ]
     },
     {
@@ -301,10 +285,7 @@ const content = [
             "/images/referral/Referrals4_View.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/referrals/how to .mp4",
         ]
     },
     {
@@ -347,10 +328,7 @@ const content = [
             "/images/scan-business-card/Scan5_SendText.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/scan-business-card/how to .mp4",
         ]
     },
     {
@@ -391,10 +369,7 @@ const content = [
             "/images/add-prospect-client/AddPros5_ScanBusCard.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/add-prospect-client/how to .mp4",
         ]
     },
 
@@ -437,10 +412,7 @@ const content = [
             "/images/share/Share6_TextShare.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/share/how to .mp4",
         ]
     },
     {
@@ -484,10 +456,7 @@ const content = [
             "/images/team/Team5_Header.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/team-groups/how to .mp4",
         ]
     },
     {
@@ -530,10 +499,7 @@ const content = [
             "/images/reporting/Reporting6_NewProspects.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/reporting/how to .mp4",
         ]
     },
     {
@@ -576,10 +542,7 @@ const content = [
             "/images/pipeline/Pipeline6_AddNotes.PNG",
         ],
         video: [
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
-            "/images/pipeline/PipelinePromoVid.mp4",
+            "/videos/pipeline/how to .mp4",
         ]
     },
 ];

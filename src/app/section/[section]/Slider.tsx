@@ -5,7 +5,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import FullscreenImageSlider from './FullscreenImageSlider'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 
-function ImageSlider({ media }: { media: string[] }) {
+function ImageSlider({ images, videos }: { images: string[], videos: string[] }) {
     const [index, setIndex] = useState(0)
     const [fullscreen, setFullscreen] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
@@ -22,7 +22,7 @@ function ImageSlider({ media }: { media: string[] }) {
     const handleDragEnd = (event: any, info: any) => {
         if (info.offset.x > 100 && index > 0) {
             setIndex(index - 1)
-        } else if (info.offset.x < -100 && index < media.length - 1) {
+        } else if (info.offset.x < -100 && index < images.length - 1) {
             setIndex(index + 1)
         }
         controls.start({ x: 0, opacity: 1 })
@@ -41,34 +41,14 @@ function ImageSlider({ media }: { media: string[] }) {
                     transition={{ type: "spring", stiffness: 300 }}
                     ref={constraintsRef}
                 >
-                    <AnimatePresence initial={false}>
-                        {media.map((image, i) => (
-                            <motion.div
-                                key={image}
-                                style={{
-                                    position: 'absolute',
-                                    width: '100%',
-                                    height: '100%',
-                                }}
-                                initial={{ x: i > index ? '100%' : '-100%' }}
-                                animate={{ x: i === index ? 0 : i < index ? '-100%' : '100%' }}
-                                exit={{ x: i < index ? '-100%' : '100%' }}
-                                transition={{ duration: 0.5 }}
-                                drag={isMobile ? "x" : false}
-                                dragConstraints={constraintsRef}
-                                dragElastic={0.2}
-                                onDragEnd={handleDragEnd}
-                            >
-                                <Image
-                                    src={image}
-                                    alt={`Image ${i + 1}`}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    className="rounded-lg"
-                                />
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
+                    {
+                        // show the videos
+                    }
+                    {
+                        videos.map((video, index) => (
+                            <video key={index} src={video} />
+                        ))
+                    }
 
                     <motion.div
                         className='absolute top-2 right-2 text-blue-500 shadow-sm border border-blue-500/20 bg-white/70 px-2 rounded-md'
@@ -76,7 +56,7 @@ function ImageSlider({ media }: { media: string[] }) {
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.3 }}
                     >
-                        {index + 1} of {media.length}
+                        {index + 1} of {images.length}
                     </motion.div>
 
                     <motion.button
@@ -95,7 +75,7 @@ function ImageSlider({ media }: { media: string[] }) {
 
                 </motion.div>
                 <div className="flex gap-4 py-2 mx-auto">
-                    {media.map((_, i) => (
+                    {images.map((_, i) => (
                         <motion.div
                             key={i}
                             className="w-2 h-2 rounded-full"
@@ -116,9 +96,9 @@ function ImageSlider({ media }: { media: string[] }) {
                             transition={{ delay: 0.5 }}
                         >
                             {[
-                                (index - 1 + media.length) % media.length,
+                                (index - 1 + images.length) % images.length,
                                 index,
-                                (index + 1) % media.length
+                                (index + 1) % images.length
                             ].map((i) => (
                                 <motion.li
                                     key={i}
@@ -128,7 +108,7 @@ function ImageSlider({ media }: { media: string[] }) {
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     <Image
-                                        src={media[i]}
+                                        src={images[i]}
                                         alt={`Image ${i + 1}`}
                                         layout="fill"
                                         objectFit="cover"
@@ -137,12 +117,12 @@ function ImageSlider({ media }: { media: string[] }) {
                                 </motion.li>
                             ))}
                         </motion.ul>
-                        <Controls index={index} setIndex={setIndex} media={media} />
+                        <Controls index={index} setIndex={setIndex} media={images} />
                     </>
                 )}
             </motion.div>
             {fullscreen && (
-                <FullscreenImageSlider setFullscreen={setFullscreen} images={media} index={index} setIndex={setIndex} />
+                <FullscreenImageSlider setFullscreen={setFullscreen} images={images} index={index} setIndex={setIndex} />
             )}
         </>
     )

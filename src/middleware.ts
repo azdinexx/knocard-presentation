@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const knocardCardSession = request.cookies.get("knocard-card");
+  const knocardCardSession = request.cookies.get("knocard-session");
 
   if (!knocardCardSession) {
     return NextResponse.redirect(new URL("/password", request.url));

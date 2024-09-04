@@ -2,7 +2,7 @@
 import { signIn } from '@/actions/auth'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
-import { useFormState } from 'react-dom'
+import { useFormState, useFormStatus } from 'react-dom'
 import { toast, Toaster } from 'sonner'
 
 function PasswordPage() {
@@ -29,9 +29,7 @@ function PasswordPage() {
                             required
                             autoFocus
                         />
-                        <button type='submit' className='  p-4  rounded-xl w-full bg-blue-800 text-white hover:bg-blue-700'>
-                            <span>submit</span>
-                        </button>
+                        <SubmitButton />
 
                     </div>
                 </form>
@@ -44,3 +42,12 @@ function PasswordPage() {
 }
 
 export default PasswordPage
+
+function SubmitButton() {
+    const { pending } = useFormStatus()
+    return (
+        <button type='submit' className='  p-4  rounded-xl w-full bg-blue-800 text-white hover:bg-blue-700'>
+            <span>{pending ? 'loading...' : 'submit'}</span>
+        </button>
+    )
+}
