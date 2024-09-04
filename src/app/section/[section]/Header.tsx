@@ -16,9 +16,9 @@ const Header = ({ section, color }: { section: string, color: string }) => {
 
 
     return (
-        <header className=" flex justify-center items-center gap-3  ">
-            <Icon color={color} section={section} />
-            <h1 className="text-[40px] font-[500] capitalize text-center"
+        <header className="flex justify-center items-center gap-2 sm:gap-3 p-2 sm:p-4">
+            <Icon color={color} section={section} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-[500] capitalize text-center"
                 style={{
                     color: color
                 }}
@@ -31,71 +31,71 @@ const Header = ({ section, color }: { section: string, color: string }) => {
 export default Header;
 
 
-function Icon({ section, color }: { section: string, color: string }) {
+function Icon({ section, color, className }: { section: string, color: string, className: string }) {
     switch (section.toLowerCase().replaceAll(' ', '_')) {
         case 'reporting':
-            return <Reporting className='w-[44px] h-[44px]'
+            return <Reporting className={className}
                 style={{
                     fill: color
                 }}
             />
             break
         case 'teams_&_groups':
-            return <TeamsAndGroups className='w-[44px] h-[44px]'
+            return <TeamsAndGroups className={className}
                 style={{
                     fill: color
                 }} />
             break
         case 'share':
-            return <Share className='w-[44px] h-[44px]'
+            return <Share className={className}
                 style={{
                     fill: color
                 }} />
             break
         case 'media':
-            return <Media className='w-[44px] h-[44px]'
+            return <Media className={className}
                 style={{
                     fill: color
                 }} />
             break
         case 'social':
-            return <Social className='w-[44px] h-[44px]'
+            return <Social className={className}
                 style={{
                     fill: color
                 }} />
             break
         case 'feedback_forms':
-            return <FeedbackForms className='w-[44px] h-[44px]'
+            return <FeedbackForms className={className}
                 style={{
                     fill: color
                 }} />
             break
         case 'referrals':
-            return <Referrals className='w-[44px] h-[44px]'
+            return <Referrals className={className}
                 style={{
                     fill: color
                 }} />
             break
         case 'scan_business_card':
-            return <ScanBusinessCard className='w-[44px] h-[44px]'
+            return <ScanBusinessCard className={className}
                 style={{
                     fill: color
                 }} />
             break
         case 'add_new_prospect':
-            return <AddNewPropspects className='w-[44px] h-[44px]'
+            return <AddNewPropspects className={className}
                 style={{
                     fill: color
                 }} />
             break
         case 'messaging':
-            return <Messaging className='w-[44px] h-[44px]'
+            return <Messaging className={className}
                 style={{
                     fill: color
                 }} />
             break
         case 'knocard_link':
-            return <KnocardLink className='w-[44px] h-[44px]'
+            return <KnocardLink className={className}
                 style={{
                     fill: color
                 }} />
