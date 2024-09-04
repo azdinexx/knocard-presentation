@@ -1,8 +1,13 @@
 
 import { Toaster } from 'sonner'
 import PasswordForm from './form'
+import { isLoggedIn } from '@/actions/auth'
+import { redirect } from 'next/navigation'
 async function PasswordPage() {
-
+    const isLogged = await isLoggedIn()
+    if (isLogged) {
+        return redirect('/')
+    }
     return (
         <>
             <div className='w-screen h-screen flex items-center justify-center'>

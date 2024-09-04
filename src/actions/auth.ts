@@ -1,6 +1,6 @@
 "use server";
 
-import { SignJWT } from "jose";
+import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
 import { v4 as uuidv4 } from "uuid";
 
@@ -39,4 +39,20 @@ export async function signIn(state: SignInFormState, formData: FormData) {
   });
 
   return { success: true };
+}
+
+export async function isLoggedIn() {
+  const session = cookies().get("knocard-session");
+
+  if (!session) {
+    return false;
+  }
+
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  try {
+    const { payload } = await jwtVerify(session.value, secret);
+    return true;
+  } catch (error) {
+    return false;
+  }
 }

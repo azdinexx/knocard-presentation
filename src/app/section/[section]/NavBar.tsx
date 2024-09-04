@@ -30,14 +30,7 @@ const Navbar = ({
                             <Home fill={color} width={40} height={40} className="w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16" />
                         </motion.button>
                     </Link>
-                    <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="flex flex-col items-center"
-                        onClick={() => setFullscreen(true)}
-                    >
-                        <Share fill={color} width={40} height={40} className="w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16" />
-                    </motion.button>
+
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
