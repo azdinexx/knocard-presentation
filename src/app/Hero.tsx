@@ -24,7 +24,7 @@ export default function Hero() {
     }, []);
 
     const circleRadius = Math.min(
-        windowSize.width < 768 ? 150 : windowSize.width < 1024 ? 250 : 320,
+        windowSize.width < 744 ? 150 : windowSize.width < 1024 ? 250 : 320,
         windowSize.height * 0.355
     );
 
