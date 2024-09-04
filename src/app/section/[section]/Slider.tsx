@@ -103,7 +103,7 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                         ></motion.div>
                     ))}
                 </div>
-                {!isMobile && (
+                {(
                     <>
                         <motion.ul
                             className='grid grid-cols-3 gap-4 mx-16 '
@@ -118,7 +118,7 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                             ].map((i) => (
                                 <motion.li
                                     key={i}
-                                    className='aspect-square relative cursor-pointer'
+                                    className='aspect-square w-20 md:w-auto relative cursor-pointer'
                                     onClick={() => {
                                         setImageIndex(i);
                                         setFullscreenImage(true);
@@ -136,8 +136,11 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                                 </motion.li>
                             ))}
                         </motion.ul>
-                        <Controls index={videoIndex} setIndex={setVideoIndex} media={videos} />
-                    </>
+                        {
+                            !isMobile && (
+                                <Controls index={videoIndex} setIndex={setVideoIndex} media={videos} />
+                            )
+                        }                    </>
                 )}
             </motion.div>
             {fullscreenImage && (
