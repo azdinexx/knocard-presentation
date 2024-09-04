@@ -23,7 +23,7 @@ export default function Hero() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const circleRadius = windowSize.width < 768 ? 150 : 320;
+    const circleRadius = windowSize.width < 768 ? 150 : windowSize.width < 1024 ? 250 : 320;
 
     return (
         <main className="relative bg-neutral-50 w-screen h-screen flex justify-center items-center pb-28">
@@ -35,7 +35,7 @@ export default function Hero() {
                     alt="phone"
                     width={200}
                     height={200}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] md:w-[220px] hidden md:block"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] md:w-[180px] lg:w-[220px] hidden md:block"
                 />
                 {list.map((item, i) => (
                     <motion.button
@@ -49,7 +49,7 @@ export default function Hero() {
                             left: `calc(50% + ${circleRadius}px * ${Math.cos((i * 2 * Math.PI) / 12)})`,
                         }}
                         key={i}
-                        className="absolute flex flex-col items-center justify-center hover:bg-neutral-100/50 rounded-xl md:p-2"
+                        className="absolute flex flex-col items-center justify-center hover:bg-neutral-100/50 rounded-xl p-1 md:p-2"
                         style={{
                             top: `calc(50% + ${circleRadius}px * ${Math.sin((i * 2 * Math.PI) / 12)})`,
                             left: `calc(50% + ${circleRadius}px * ${Math.cos((i * 2 * Math.PI) / 12)})`,
@@ -57,16 +57,16 @@ export default function Hero() {
                         }}
                     >
                         <Link href={item.href} className="flex flex-col items-center justify-center">
-                            <div className="w-10 h-10 md:w-40 md:h-20 overflow-hidden flex items-center justify-center">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 lg:w-20 lg:h-20 overflow-hidden flex items-center justify-center">
                                 <Image
                                     src={item.icon}
                                     alt={item.title}
-                                    width={windowSize.width < 768 ? 70 : 100}
-                                    height={windowSize.width < 768 ? 70 : 100}
+                                    width={windowSize.width < 768 ? 60 : windowSize.width < 1024 ? 80 : 100}
+                                    height={windowSize.width < 768 ? 60 : windowSize.width < 1024 ? 80 : 100}
                                     className="overflow-hidden"
                                 />
                             </div>
-                            <p className="text-center text-xs md:text-sm font-medium max-w-20 md:max-w-40">{item.title}</p>
+                            <p className="text-center text-[10px] sm:text-xs md:text-sm font-medium max-w-16 sm:max-w-20 md:max-w-28 lg:max-w-40">{item.title}</p>
                         </Link>
                     </motion.button>
                 ))}
