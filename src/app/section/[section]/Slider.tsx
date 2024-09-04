@@ -7,7 +7,8 @@ import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 import FullscreenVideoSlider from './FullscreenVideoSlider'
 
 function ImageSlider({ images, videos }: { images: string[], videos: string[] }) {
-    const [index, setIndex] = useState(0)
+    const [imageIndex, setImageIndex] = useState(0)
+    const [videoIndex, setVideoIndex] = useState(0)
     const [fullscreenVideo, setFullscreenVideo] = useState(false)
     const [fullscreenImage, setFullscreenImage] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
@@ -22,10 +23,10 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
     }, [])
 
     const handleDragEnd = (event: any, info: any) => {
-        if (info.offset.x > 100 && index > 0) {
-            setIndex(index - 1)
-        } else if (info.offset.x < -100 && index < images.length - 1) {
-            setIndex(index + 1)
+        if (info.offset.x > 100 && videoIndex > 0) {
+            setVideoIndex(videoIndex - 1)
+        } else if (info.offset.x < -100 && videoIndex < videos.length - 1) {
+            setVideoIndex(videoIndex + 1)
         }
         controls.start({ x: 0, opacity: 1 })
     }
@@ -44,14 +45,14 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                     ref={constraintsRef}
                 >
 
-                    {videos.map((video, videoIndex) => (
-                        <div key={videoIndex} className="absolute inset-0">
+                    {videos.map((video, index) => (
+                        <div key={index} className={`absolute inset-0 ${index === videoIndex ? 'block' : 'hidden'}`}>
                             <video
                                 src={video}
                                 className="w-full h-full object-cover cursor-pointer"
                                 onClick={() => {
                                     setFullscreenVideo(true);
-                                    setIndex(videoIndex);
+                                    setVideoIndex(index);
                                 }}
                             />
                         </div>
@@ -59,8 +60,8 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                     {fullscreenVideo && (
                         <FullscreenVideoSlider
                             videos={videos}
-                            index={index}
-                            setIndex={setIndex}
+                            index={videoIndex}
+                            setIndex={setVideoIndex}
                             setFullscreen={setFullscreenVideo}
                         />
                     )}
@@ -71,7 +72,7 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.3 }}
                     >
-                        {index + 1} of {images.length}
+                        {videoIndex + 1} of {videos.length}
                     </motion.div>
 
                     <motion.button
@@ -90,15 +91,15 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
 
                 </motion.div>
                 <div className="flex gap-4 py-2 mx-auto">
-                    {images.map((_, i) => (
+                    {videos.map((_, i) => (
                         <motion.div
                             key={i}
                             className="w-2 h-2 rounded-full"
                             style={{
-                                backgroundColor: i === index ? '#007CB4' : 'white'
+                                backgroundColor: i === videoIndex ? '#007CB4' : 'white'
                             }}
                             initial={false}
-                            animate={i === index ? { scale: 1.2 } : { scale: 1 }}
+                            animate={i === videoIndex ? { scale: 1.2 } : { scale: 1 }}
                         ></motion.div>
                     ))}
                 </div>
@@ -111,14 +112,17 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                             transition={{ delay: 0.5 }}
                         >
                             {[
-                                (index - 1 + images.length) % images.length,
-                                index,
-                                (index + 1) % images.length
+                                (imageIndex - 1 + images.length) % images.length,
+                                imageIndex,
+                                (imageIndex + 1) % images.length
                             ].map((i) => (
                                 <motion.li
                                     key={i}
                                     className='aspect-square relative cursor-pointer'
-                                    onClick={() => setIndex(i)}
+                                    onClick={() => {
+                                        setImageIndex(i);
+                                        setFullscreenImage(true);
+                                    }}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
@@ -132,12 +136,12 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                                 </motion.li>
                             ))}
                         </motion.ul>
-                        <Controls index={index} setIndex={setIndex} media={images} />
+                        <Controls index={videoIndex} setIndex={setVideoIndex} media={videos} />
                     </>
                 )}
             </motion.div>
             {fullscreenImage && (
-                <FullscreenImageSlider setFullscreen={setFullscreenImage} images={images} index={index} setIndex={setIndex} />
+                <FullscreenImageSlider setFullscreen={setFullscreenImage} images={images} index={imageIndex} setIndex={setImageIndex} />
             )}
         </>
     )
