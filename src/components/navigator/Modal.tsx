@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Modal({ isOpen, onClose }: {
     isOpen: boolean;
@@ -33,48 +33,74 @@ export default function Modal({ isOpen, onClose }: {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center z-50"
-            onClick={onClose}
-        >
-            <div
-                className="bg-[url('/knocard.svg')] bg-no-repeat bg-center bg-contain w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] relative transition-all duration-300"
-            >
-
-                {list.map((item, i) => (
-                    <motion.button
-                        initial={{
-                            top: '50%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
-                        }}
-                        animate={{
-                            top: `calc(50% + ${circleRadius}px * ${Math.sin((i * 2 * Math.PI) / 12)})`,
-                            left: `calc(50% + ${circleRadius}px * ${Math.cos((i * 2 * Math.PI) / 12)})`,
-                        }}
-                        key={i}
-                        className="absolute flex flex-col items-center justify-center hover:bg-neutral-100/50 rounded-xl p-1 md:p-2"
-                        style={{
-                            top: `calc(50% + ${circleRadius}px * ${Math.sin((i * 2 * Math.PI) / 12)})`,
-                            left: `calc(50% + ${circleRadius}px * ${Math.cos((i * 2 * Math.PI) / 12)})`,
-                            transform: 'translate(-50%, -50%)',
-                        }}
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center z-50"
+                    onClick={onClose}
+                >
+                    <motion.div
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.8, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="bg-[url('/knocard.svg')] bg-no-repeat bg-center bg-contain w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] relative transition-all duration-300"
                     >
-                        <Link href={item.href} className="flex flex-col items-center justify-center">
-                            <div className="w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 overflow-hidden flex items-center justify-center">
-                                <Image
-                                    src={item.icon}
-                                    alt={item.title}
-                                    width={windowSize.width < 768 ? 70 : windowSize.width < 1024 ? 90 : 100}
-                                    height={windowSize.width < 768 ? 70 : windowSize.width < 1024 ? 90 : 100}
-                                    className="overflow-hidden"
-                                />
-                            </div>
-                            <p className="text-center text-[11px] sm:text-xs md:text-sm font-medium max-w-20 sm:max-w-24 md:max-w-28 lg:max-w-40 text-white/60">{item.title}</p>
-                        </Link>
-                    </motion.button>
-                ))}
-            </div>
-        </div>
+                        {list.map((item, i) => (
+                            <motion.button
+                                initial={{
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                    opacity: 0,
+                                }}
+                                animate={{
+                                    top: `calc(50% + ${circleRadius}px * ${Math.sin((i * 2 * Math.PI) / 12)})`,
+                                    left: `calc(50% + ${circleRadius}px * ${Math.cos((i * 2 * Math.PI) / 12)})`,
+                                    opacity: 1,
+                                }}
+                                transition={{ delay: i * 0.05, duration: 0.3 }}
+                                key={i}
+                                className="absolute flex flex-col items-center justify-center hover:bg-neutral-900/60 rounded-xl p-1 md:p-2"
+                                style={{
+                                    top: `calc(50% + ${circleRadius}px * ${Math.sin((i * 2 * Math.PI) / 12)})`,
+                                    left: `calc(50% + ${circleRadius}px * ${Math.cos((i * 2 * Math.PI) / 12)})`,
+                                    transform: 'translate(-50%, -50%)',
+                                }}
+                            >
+                                <Link href={item.href} className="flex flex-col items-center justify-center">
+                                    <motion.div
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        className="w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 overflow-hidden flex items-center justify-center"
+                                    >
+                                        <Image
+                                            src={item.icon}
+                                            alt={item.title}
+                                            width={windowSize.width < 768 ? 70 : windowSize.width < 1024 ? 90 : 100}
+                                            height={windowSize.width < 768 ? 70 : windowSize.width < 1024 ? 90 : 100}
+                                            className="overflow-hidden"
+                                        />
+                                    </motion.div>
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: i * 0.05 + 0.2, duration: 0.3 }}
+                                        className="text-center text-[11px] sm:text-xs md:text-sm font-medium max-w-20 sm:max-w-24 md:max-w-28 lg:max-w-40 text-white/60"
+                                    >
+                                        {item.title}
+                                    </motion.p>
+                                </Link>
+                            </motion.button>
+                        ))}
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
     );
 }
 
