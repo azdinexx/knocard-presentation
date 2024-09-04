@@ -4,10 +4,12 @@ import Image from 'next/image'
 import React, { useState, useRef, useEffect } from 'react'
 import FullscreenImageSlider from './FullscreenImageSlider'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion'
+import FullscreenVideoSlider from './FullscreenVideoSlider'
 
 function ImageSlider({ images, videos }: { images: string[], videos: string[] }) {
     const [index, setIndex] = useState(0)
-    const [fullscreen, setFullscreen] = useState(false)
+    const [fullscreenVideo, setFullscreenVideo] = useState(false)
+    const [fullscreenImage, setFullscreenImage] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
     const controls = useAnimation()
     const constraintsRef = useRef(null)
@@ -41,14 +43,27 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                     transition={{ type: "spring", stiffness: 300 }}
                     ref={constraintsRef}
                 >
-                    {
-                        // show the videos
-                    }
-                    {
-                        videos.map((video, index) => (
-                            <video key={index} src={video} />
-                        ))
-                    }
+
+                    {videos.map((video, videoIndex) => (
+                        <div key={videoIndex} className="absolute inset-0">
+                            <video
+                                src={video}
+                                className="w-full h-full object-cover cursor-pointer"
+                                onClick={() => {
+                                    setFullscreenVideo(true);
+                                    setIndex(videoIndex);
+                                }}
+                            />
+                        </div>
+                    ))}
+                    {fullscreenVideo && (
+                        <FullscreenVideoSlider
+                            videos={videos}
+                            index={index}
+                            setIndex={setIndex}
+                            setFullscreen={setFullscreenVideo}
+                        />
+                    )}
 
                     <motion.div
                         className='absolute top-2 right-2 text-blue-500 shadow-sm border border-blue-500/20 bg-white/70 px-2 rounded-md'
@@ -62,7 +77,7 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                     <motion.button
                         className='absolute bottom-2 left-2 bg-white/70 shadow-md border border-blue-500/20 rounded-md p-2'
                         data-tooltip-content="Fullscreen"
-                        onClick={() => setFullscreen(!fullscreen)}
+                        onClick={() => setFullscreenImage(!fullscreenImage)}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                     >
@@ -121,8 +136,8 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                     </>
                 )}
             </motion.div>
-            {fullscreen && (
-                <FullscreenImageSlider setFullscreen={setFullscreen} images={images} index={index} setIndex={setIndex} />
+            {fullscreenImage && (
+                <FullscreenImageSlider setFullscreen={setFullscreenImage} images={images} index={index} setIndex={setIndex} />
             )}
         </>
     )
