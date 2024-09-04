@@ -33,14 +33,14 @@ export default function Hero() {
     return (
         <main className="relative bg-neutral-50 w-screen h-screen flex justify-center items-center pb-28">
             <div
-                className="bg-[url('/knocard.svg')] bg-no-repeat bg-center bg-contain w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[350px] md:h-[350px] lg:w-[412px] lg:h-[412px] relative transition-all duration-300"
+                className="bg-[url('/knocard.svg')] bg-no-repeat bg-center bg-contain w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] relative transition-all duration-300"
             >
                 <Image
                     src={'/phone.png'}
                     alt="phone"
                     width={200}
                     height={200}
-                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] md:w-[180px] lg:w-[220px] hidden md:block ${isIpadRotated ? 'md:w-[140px]' : ''}`}
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] md:w-[170px] lg:w-[200px] hidden md:block ${isIpadRotated ? 'md:w-[120px]' : ''}`}
                 />
                 {list.map((item, i) => (
                     <motion.button
