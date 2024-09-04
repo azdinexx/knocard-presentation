@@ -28,6 +28,8 @@ export default function Hero() {
         windowSize.height * 0.355
     );
 
+    const isIpadRotated = windowSize.width === 744 && windowSize.height === 1059;
+
     return (
         <main className="relative bg-neutral-50 w-screen h-screen flex justify-center items-center pb-28">
             <div
@@ -38,7 +40,7 @@ export default function Hero() {
                     alt="phone"
                     width={200}
                     height={200}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] md:w-[180px] lg:w-[220px] hidden md:block"
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] md:w-[180px] lg:w-[220px] hidden md:block ${isIpadRotated ? 'md:w-[140px]' : ''}`}
                 />
                 {list.map((item, i) => (
                     <motion.button
