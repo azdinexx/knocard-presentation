@@ -31,7 +31,7 @@ export default function Hero() {
     const isIpadRotated = windowSize.width === 744 && windowSize.height === 1059;
 
     return (
-        <main className="relative bg-neutral-50 w-screen h-screen flex justify-center items-center pb-44 md:pb-32">
+        <main className="relative bg-neutral-50 w-screen h-screen flex justify-center items-center pb-44 md:pb-32 bg-[url('/bg/messaging.svg')] ">
             <div
                 className="bg-[url('/knocard.svg')] bg-no-repeat bg-center bg-contain w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] relative transition-all duration-300"
             >
