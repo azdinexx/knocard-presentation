@@ -23,7 +23,10 @@ export default function Hero() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const circleRadius = windowSize.width < 768 ? 150 : windowSize.width < 1024 ? 250 : 320;
+    const circleRadius = Math.min(
+        windowSize.width < 768 ? 150 : windowSize.width < 1024 ? 250 : 320,
+        windowSize.height * 0.355
+    );
 
     return (
         <main className="relative bg-neutral-50 w-screen h-screen flex justify-center items-center pb-28">
@@ -57,16 +60,16 @@ export default function Hero() {
                         }}
                     >
                         <Link href={item.href} className="flex flex-col items-center justify-center">
-                            <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 lg:w-20 lg:h-20 overflow-hidden flex items-center justify-center">
+                            <div className="w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 overflow-hidden flex items-center justify-center">
                                 <Image
                                     src={item.icon}
                                     alt={item.title}
-                                    width={windowSize.width < 768 ? 60 : windowSize.width < 1024 ? 80 : 100}
-                                    height={windowSize.width < 768 ? 60 : windowSize.width < 1024 ? 80 : 100}
+                                    width={windowSize.width < 768 ? 70 : windowSize.width < 1024 ? 90 : 100}
+                                    height={windowSize.width < 768 ? 70 : windowSize.width < 1024 ? 90 : 100}
                                     className="overflow-hidden"
                                 />
                             </div>
-                            <p className="text-center text-[10px] sm:text-xs md:text-sm font-medium max-w-16 sm:max-w-20 md:max-w-28 lg:max-w-40">{item.title}</p>
+                            <p className="text-center text-[11px] sm:text-xs md:text-sm font-medium max-w-20 sm:max-w-24 md:max-w-28 lg:max-w-40">{item.title}</p>
                         </Link>
                     </motion.button>
                 ))}
