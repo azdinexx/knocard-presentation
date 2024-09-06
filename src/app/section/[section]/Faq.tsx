@@ -13,9 +13,18 @@ const FAQ: React.FC<{ faqData: FAQItem[] }> = ({
     faqData: FAQItem[]
 }) => {
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+    const [fullPopupIndex, setFullPopupIndex] = useState<number | null>(null);
 
     const toggleExpand = (index: number) => {
         setExpandedIndex(prevIndex => prevIndex === index ? null : index);
+    };
+
+    const openFullPopup = (index: number) => {
+        setFullPopupIndex(index);
+    };
+
+    const closeFullPopup = () => {
+        setFullPopupIndex(null);
     };
 
     return (
@@ -71,12 +80,52 @@ const FAQ: React.FC<{ faqData: FAQItem[] }> = ({
                                             <li key={pIndex} className="mb-2">{paragraph}</li>
                                         ))}
                                     </ul>
+                                    <button
+                                        className="hidden md:block mt-4 bg-white text-black px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+                                        onClick={() => openFullPopup(index)}
+                                    >
+                                        View Full
+                                    </button>
                                 </motion.div>
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </motion.div>
             ))}
+
+            <AnimatePresence>
+                {fullPopupIndex !== null && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+                    >
+                        <motion.div
+                            className="bg-white text-black p-6 rounded-lg max-w-2xl w-full mx-4 relative aspect-video"
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                        >
+                            <h2 className="text-2xl font-bold mb-4">{faqData[fullPopupIndex].q}</h2>
+                            <ul className='list-disc list-outside pl-6 pr-2'>
+                                {faqData[fullPopupIndex].a.map((paragraph, pIndex) => (
+                                    <li key={pIndex} className="mb-2">{paragraph}</li>
+                                ))}
+                            </ul>
+                            <button
+                                className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center"
+                                onClick={closeFullPopup}
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 6L6 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
