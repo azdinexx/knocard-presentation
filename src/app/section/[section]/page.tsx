@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import Header from './Header'
 import FAQ from './Faq'
 import ImageSlider from './Slider'
@@ -7,7 +7,6 @@ import Navbar from './NavBar'
 
 function Page({ params }: { params: { section: string } }) {
 
-    const [showSlider, setShowSlider] = useState(true);
 
     const info = content.find((item) => item.id === params.section)
 
@@ -24,20 +23,13 @@ function Page({ params }: { params: { section: string } }) {
                 color={info.nav_color}
                 section={info?.title || ''}
             />
-            <main className={"max-w-5xl mx-auto w-full gap-2 md:gap-14 grid place-items-start " + (showSlider ? "md:grid-cols-2" : "")}>
+            <main className={"max-w-5xl mx-auto w-full gap-2 md:gap-14 grid place-items-start md:grid-cols-2"}>
                 <FAQ faqData={info.faq} />
-                <button
-                    className="absolute top-0 right-0 z-10 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-bold py-2 px-4 rounded"
-                    onClick={() => setShowSlider(!showSlider)}
-                >
-                    {showSlider ? 'Hide' : 'Show'} Slider
-                </button>
-                {showSlider && (
-                    <ImageSlider
-                        images={info.images}
-                        videos={info.video}
-                    />
-                )}
+
+                <ImageSlider
+                    images={info.images}
+                    videos={info.video}
+                />
             </main>
             <Navbar color={info.nav_color} />
         </div>
