@@ -49,8 +49,7 @@ const FAQ: React.FC<{ faqData: FAQItem[] }> = ({
                                 transition={{ duration: 0.3 }}
                                 className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 md:relative md:bg-transparent"
                             >
-                                <div className="bg-white text-black p-4 rounded-lg max-w-sm w-full mx-4 md:mx-0 md:bg-transparent md:text-white relative py-10
-                                ">
+                                <div className="bg-white text-black p-4 rounded-lg max-w-sm w-full mx-4 md:mx-0 md:bg-transparent md:text-white relative py-10">
                                     <button
                                         className="absolute top-2 right-2 md:hidden bg-red-500 rounded-full p-[2px] "
                                         onClick={() => toggleExpand(index)}
@@ -60,6 +59,7 @@ const FAQ: React.FC<{ faqData: FAQItem[] }> = ({
                                             <path d="M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
                                     </button>
+                                    <h3 className="text-center font-semibold mb-4 md:hidden">{item.q}</h3>
                                     <ul className='list-disc list-outside pl-6 pr-2 md:pl-10 md:pr-6'>
                                         {item.a.map((paragraph, pIndex) => (
                                             <li key={pIndex} className="mb-2">{paragraph}</li>
