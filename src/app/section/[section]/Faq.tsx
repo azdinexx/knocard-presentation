@@ -43,13 +43,19 @@ const FAQ: React.FC<{ faqData: FAQItem[] }> = ({
                     <AnimatePresence>
                         {expandedIndex === index && (
                             <motion.div
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.3 }}
                                 className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 md:relative md:bg-transparent"
                             >
-                                <div className="bg-white text-black p-4 rounded-lg max-w-sm w-full mx-4 md:mx-0 md:bg-transparent md:text-white relative py-10">
+                                <motion.div
+                                    className="bg-white text-black p-4 md:p-0 rounded-lg max-w-sm w-full mx-4 md:mx-0 md:bg-transparent md:text-white relative md:py-5 py-10"
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.9, opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                >
                                     <button
                                         className="absolute top-2 right-2 md:hidden bg-red-500 rounded-full p-[2px] "
                                         onClick={() => toggleExpand(index)}
@@ -60,12 +66,12 @@ const FAQ: React.FC<{ faqData: FAQItem[] }> = ({
                                         </svg>
                                     </button>
                                     <h3 className="text-center font-semibold mb-4 md:hidden">{item.q}</h3>
-                                    <ul className='list-disc list-outside pl-6 pr-2 md:pl-10 md:pr-6'>
+                                    <ul className='list-disc list-outside pl-6 pr-2 md:pl-2 md:pr-2'>
                                         {item.a.map((paragraph, pIndex) => (
                                             <li key={pIndex} className="mb-2">{paragraph}</li>
                                         ))}
                                     </ul>
-                                </div>
+                                </motion.div>
                             </motion.div>
                         )}
                     </AnimatePresence>
