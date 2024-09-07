@@ -118,10 +118,10 @@ const list = [
         icon: '/icones/share.svg',
         href: '/section/share',
     }, {
-        id: 'team_&_groups',
+        id: 'team-and-groups',
         title: 'Team & Groups',
         icon: '/icones/team_&_groups.svg',
-        href: '/section/team_&_groups',
+        href: '/section/team-and-groups',
     }, {
         id: 'messaging',
         title: 'Messaging',

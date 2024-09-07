@@ -10,11 +10,12 @@ type SignInFormState = null | {
 };
 
 export async function signIn(state: SignInFormState, formData: FormData) {
-  const password = formData.get("password") as string;
+  const password = formData.get("pwd") as string;
+  console.log("password : ", password);
+  console.log("process.env.PASSWORD : ", process.env.PASSWORD);
   if (!password) {
     return { error: "password is required" };
   }
-
   const isPasswordCorrect = password === process.env.PASSWORD;
 
   if (!isPasswordCorrect) {
@@ -51,6 +52,19 @@ export async function isLoggedIn() {
   const secret = new TextEncoder().encode(process.env.JWT_SECRET);
   try {
     const { payload } = await jwtVerify(session.value, secret);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+export async function verifySession(session: string) {
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  if (!session) {
+    return false;
+  }
+  try {
+    const { payload } = await jwtVerify(session, secret);
     return true;
   } catch (error) {
     return false;

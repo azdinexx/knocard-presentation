@@ -87,9 +87,10 @@ export default function Modal({ isOpen, onClose }: {
                                             <Image
                                                 src={item.icon}
                                                 alt={item.title}
-                                                width={windowSize.width < 768 ? 70 : windowSize.width < 1024 ? 90 : 100}
-                                                height={windowSize.width < 768 ? 70 : windowSize.width < 1024 ? 90 : 100}
+                                                width={windowSize.width < 768 ? 1000 : windowSize.width < 1024 ? 100 : 100}
+                                                height={windowSize.width < 768 ? 1000 : windowSize.width < 1024 ? 100 : 100}
                                                 className="overflow-hidden"
+                                                quality={100}
                                             />
                                         </motion.div>
                                         <motion.p

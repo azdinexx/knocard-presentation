@@ -37,14 +37,7 @@ function FullscreenVideoSlider({ videos, index, setIndex, setFullscreen }: Fulls
             className='fixed top-0 left-0 z-50 w-screen h-screen bg-black flex flex-col'
         >
             <main className="w-full h-full relative">
-                <motion.p
-                    initial={{ y: -20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className='absolute top-10 left-10 text-white text-2xl font-bold z-20'
-                >
-                    {videos[index].split('/').pop()}
-                </motion.p>
+
 
                 <AnimatePresence mode="wait">
                     <motion.div

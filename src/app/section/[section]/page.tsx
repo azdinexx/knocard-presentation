@@ -418,7 +418,7 @@ const content = [
         ]
     },
     {
-        id: "team_&_groups",
+        id: "team-and-groups",
         title: "Team & Groups",
         icon: "/icones/team_&_groups.svg",
         href: "/section/team_&_groups",
