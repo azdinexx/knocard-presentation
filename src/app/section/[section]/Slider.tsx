@@ -6,7 +6,7 @@ import FullscreenImageSlider from './FullscreenImageSlider'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 import FullscreenVideoSlider from './FullscreenVideoSlider'
 
-function ImageSlider({ images, videos }: { images: string[], videos: string[] }) {
+function ImageSlider({ images, videos, section }: { images: number, videos: string[], section: string }) {
     const [imageIndex, setImageIndex] = useState(0)
     const [videoIndex, setVideoIndex] = useState(0)
     const [fullscreenVideo, setFullscreenVideo] = useState(false)
@@ -112,9 +112,9 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                             transition={{ delay: 0.5 }}
                         >
                             {[
-                                (imageIndex - 1 + images.length) % images.length,
+                                (imageIndex - 1 + images) % images,
                                 imageIndex,
-                                (imageIndex + 1) % images.length
+                                (imageIndex + 1) % images
                             ].map((i) => (
                                 <motion.li
                                     key={i}
@@ -127,7 +127,7 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     <Image
-                                        src={images[i]}
+                                        src={`/images/${section}/${i + 1}.png`}
                                         alt={`Image ${i + 1}`}
                                         layout="fill"
                                         objectFit="cover"
@@ -144,7 +144,7 @@ function ImageSlider({ images, videos }: { images: string[], videos: string[] })
                 )}
             </motion.div>
             {fullscreenImage && (
-                <FullscreenImageSlider setFullscreen={setFullscreenImage} images={images} index={imageIndex} setIndex={setImageIndex} />
+                <FullscreenImageSlider setFullscreen={setFullscreenImage} images={images} index={imageIndex} setIndex={setImageIndex} section={section} />
             )}
         </>
     )

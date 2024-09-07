@@ -1,7 +1,15 @@
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function FullscreenImageSlider({ images, index, setIndex, setFullscreen }: { images: string[], index: number, setIndex: (index: number) => void, setFullscreen: (fullscreen: boolean) => void }) {
+export default function FullscreenImageSlider({ images, index, setIndex, setFullscreen, section }: { images: number, index: number, setIndex: (index: number) => void, setFullscreen: (fullscreen: boolean) => void, section: string }) {
+
+    const handlePrevious = () => {
+        setIndex((index - 1 + images) % images);
+    };
+
+    const handleNext = () => {
+        setIndex((index + 1) % images);
+    };
 
     return (
         <motion.div
@@ -30,7 +38,7 @@ export default function FullscreenImageSlider({ images, index, setIndex, setFull
                             />
                             <div className="absolute top-[2%] left-[5%] right-[5%] bottom-[3%] overflow-hidden rounded-[19px]">
                                 <Image
-                                    src={images[index]}
+                                    src={`/images/${section}/${index + 1}.png`}
                                     alt='image'
                                     layout="fill"
                                     objectFit="cover"
@@ -40,6 +48,26 @@ export default function FullscreenImageSlider({ images, index, setIndex, setFull
                     </AnimatePresence>
                 </div>
                 <ShareAndExit setFullscreen={setFullscreen} />
+                <motion.button
+                    className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/70 rounded-full p-2"
+                    onClick={handlePrevious}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="#007CB4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </motion.button>
+                <motion.button
+                    className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/70 rounded-full p-2"
+                    onClick={handleNext}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="#007CB4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </motion.button>
             </main>
             <motion.div
                 initial={{ y: 100, opacity: 0 }}
@@ -49,7 +77,7 @@ export default function FullscreenImageSlider({ images, index, setIndex, setFull
             >
                 <div className="flex flex-col items-center justify-center gap-4">
                     <div className="flex gap-4">
-                        {images.map((image, i) => (
+                        {Array.from({ length: images }).map((_, i) => (
                             <motion.div
                                 key={i}
                                 whileHover={{ scale: 1.1 }}
@@ -57,7 +85,7 @@ export default function FullscreenImageSlider({ images, index, setIndex, setFull
                             >
                                 <Image
                                     onClick={() => setIndex(i)}
-                                    src={image}
+                                    src={`/images/${section}/${i + 1}.png`}
                                     alt='image'
                                     width={100}
                                     height={100}
@@ -67,7 +95,7 @@ export default function FullscreenImageSlider({ images, index, setIndex, setFull
                         ))}
                     </div>
                     <div className="flex gap-4">
-                        {images.map((_, i) => (
+                        {Array.from({ length: images }).map((_, i) => (
                             <motion.div
                                 key={i}
                                 className="w-2 h-2 rounded-full"
