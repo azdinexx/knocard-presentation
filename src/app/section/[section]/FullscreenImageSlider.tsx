@@ -11,8 +11,6 @@ export default function FullscreenImageSlider({ images, index, setIndex, setFull
             className='fixed top-0 left-0 z-50 w-screen h-screen bg-gradient-to-r from-[#007CB4] to-[#00BAF2] flex flex-col'
         >
             <main className="max-w-7xl w-full h-full mx-auto relative py-5">
-
-
                 <div className="flex flex-col items-center justify-center gap-4 h-[71%] overflow-auto mt-10">
                     <AnimatePresence mode="wait">
                         <motion.div
@@ -21,15 +19,23 @@ export default function FullscreenImageSlider({ images, index, setIndex, setFull
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.8 }}
                             transition={{ duration: 0.3 }}
-                            className="h-[85%] "
+                            className="h-[85%] relative"
                         >
                             <Image
-                                src={images[index]}
-                                alt='image'
+                                src="/iphone.png"
+                                alt="Phone mockup"
                                 width={400}
-                                height={2000}
-                                className='h-full w-auto rounded-lg'
+                                height={800}
+                                className="h-full w-auto"
                             />
+                            <div className="absolute top-[2%] left-[5%] right-[5%] bottom-[3%] overflow-hidden rounded-[19px]">
+                                <Image
+                                    src={images[index]}
+                                    alt='image'
+                                    layout="fill"
+                                    objectFit="cover"
+                                />
+                            </div>
                         </motion.div>
                     </AnimatePresence>
                 </div>
@@ -94,7 +100,6 @@ export function ShareAndExit({ setFullscreen }: { setFullscreen: (fullscreen: bo
                     <path d="M42.0869 60.833H46.2536C56.6702 60.833 60.8369 56.6663 60.8369 46.2497V33.7497C60.8369 23.333 56.6702 19.1663 46.2536 19.1663H33.7536C23.3369 19.1663 19.1702 23.333 19.1702 33.7497V37.9163" stroke="#007CB4" strokeWidth="3.75" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
             </motion.button>
-
         </div>
     )
 }
