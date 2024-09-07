@@ -2,7 +2,6 @@ import { Toaster } from 'sonner'
 import PasswordForm from './form'
 import { isLoggedIn } from '@/actions/auth'
 import { redirect } from 'next/navigation'
-import Image from 'next/image'
 
 async function PasswordPage() {
     const isLogged = await isLoggedIn()

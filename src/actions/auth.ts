@@ -29,7 +29,7 @@ export async function signIn(state: SignInFormState, formData: FormData) {
   })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("30d")
+    .setExpirationTime("1h")
     .sign(secret);
 
   cookies().set("knocard-session", session, {
