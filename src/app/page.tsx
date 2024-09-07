@@ -1,6 +1,10 @@
-import Image from "next/image";
+import { Lato } from "next/font/google";
 import Hero from "./Hero";
 
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['700'],
+})
 
 export default function Home() {
   return (
@@ -47,8 +51,8 @@ function HomeHeader() {
 
         </div>
 
-        <h1 className="text-[#FFFFFF] text-[18px] line-clamp-[27px] font-[400]">Welcome to KnoCard Guide</h1>
-        <p className="text-[#EEEEEE] text-[14px] line-clamp-[21px] font-[400]">An all-in-one guide for you to understand KnoCard</p>
+        <h1 className={`${lato.className} text-[#FFFFFF] text-[18px] md:text-[24px] lg:text-[28px] xl:text-[32px] line-clamp-[27px] font-[700]`}>Get to <span className="text-yellow-300">KNO</span> more!</h1>
+        <p className="text-[#EEEEEE] text-[14px] line-clamp-[21px] font-[400]">A dynamic tour through our game-changing features</p>
       </div>
     </div>
   );
