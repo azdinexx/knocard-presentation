@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Icon } from '@/app/section/[section]/Header';
 
 export default function Modal({ isOpen, onClose }: {
     isOpen: boolean;
@@ -84,13 +85,10 @@ export default function Modal({ isOpen, onClose }: {
                                             whileTap={{ scale: 0.9 }}
                                             className="w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 overflow-hidden flex items-center justify-center"
                                         >
-                                            <Image
-                                                src={item.icon}
-                                                alt={item.title}
-                                                width={windowSize.width < 768 ? 1000 : windowSize.width < 1024 ? 100 : 100}
-                                                height={windowSize.width < 768 ? 1000 : windowSize.width < 1024 ? 100 : 100}
+                                            <Icon
+                                                section={item.title}
+                                                color="white"
                                                 className="overflow-hidden"
-                                                quality={100}
                                             />
                                         </motion.div>
                                         <motion.p

@@ -31,7 +31,7 @@ const Header = ({ section, color }: { section: string, color: string }) => {
 export default Header;
 
 
-function Icon({ section, color, className }: { section: string, color: string, className: string }) {
+export function Icon({ section, color, className }: { section: string, color: string, className: string }) {
     switch (section.toLowerCase().replaceAll(' ', '_')) {
         case 'reporting':
             return <Reporting className={className}
