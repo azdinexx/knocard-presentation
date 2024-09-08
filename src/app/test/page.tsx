@@ -1,26 +1,14 @@
-'use client'
+import Image from 'next/image'
 import React from 'react'
-import FullscreenVideoSlider from '../section/[section]/FullscreenVideoSlider'
-import { useState } from 'react'
 
-
-function Page() {
-    const [index, setIndex] = useState(0)
-    const [fullscreen, setFullscreen] = useState(false)
-
+function page() {
     return (
-        <>
-            <button onClick={() => setFullscreen(true)}>Open Fullscreen</button>
-            {fullscreen && (
-                <FullscreenVideoSlider
-                    videos={['/videos/video1.mp4', '/videos/video1.mp4', '/videos/video1.mp4']}
-                    index={index}
-                    setIndex={setIndex}
-                    setFullscreen={setFullscreen}
-                />
-            )}
-        </>
+        <div className='w-screen h-screen flex items-center justify-center'>
+            <div className='w-1/2 h-1/2 bg-red-500'>
+                <Image src='/home.png' alt='home' width={100} height={100} />
+            </div>
+        </div>
     )
 }
 
-export default Page
+export default page
