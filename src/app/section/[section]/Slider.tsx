@@ -103,44 +103,47 @@ function ImageSlider({ images, videos, section }: { images: number, videos: stri
                         ></motion.div>
                     ))}
                 </div>
+                {
+                    !isMobile && (
+                        <Controls index={videoIndex} setIndex={setVideoIndex} media={videos} />
+                    )
+                }
                 {(
                     <>
                         <motion.ul
-                            className='grid grid-cols-3 gap-4 mx-16 '
+                            className='flex gap-4 mx-6 '
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.5 }}
                         >
-                            {[
-                                (imageIndex - 1 + images) % images,
-                                imageIndex,
-                                (imageIndex + 1) % images
-                            ].map((i) => (
-                                <motion.li
-                                    key={i}
-                                    className='aspect-square w-20 md:w-auto relative cursor-pointer'
-                                    onClick={() => {
-                                        setImageIndex(i);
-                                        setFullscreenImage(true);
-                                    }}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    <Image
-                                        src={`/images/${section}/${i + 1}.png`}
-                                        alt={`Image ${i + 1}`}
-                                        layout="fill"
-                                        objectFit="cover"
-                                        className="rounded-lg"
-                                    />
-                                </motion.li>
-                            ))}
+                            {
+                                Array.from({ length: images }).map((_, i) => (
+
+                                    <motion.li
+                                        key={i}
+                                        className="relative max-w-20 min-w-[105px] w-20 h-[105px] bg-[url('/iphone.png')] bg-contain bg-no-repeat bg-center cursor-pointer border flex-grow-0"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: i * 0.1 }}
+                                        onClick={() => {
+                                            setFullscreenImage(true);
+                                            setImageIndex(i);
+                                        }}
+                                    >
+                                        <Image
+                                            src={`/images/${section}/${i + 1}.png`}
+                                            alt={`Image ${i + 1}`}
+                                            width={100}
+                                            height={100}
+                                            className='absolute w-[76px] h-[96%] rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+
+                                        />
+
+                                    </motion.li>
+                                ))
+                            }
                         </motion.ul>
-                        {
-                            !isMobile && (
-                                <Controls index={videoIndex} setIndex={setVideoIndex} media={videos} />
-                            )
-                        }                    </>
+                    </>
                 )}
             </motion.div>
             {fullscreenImage && (
@@ -155,7 +158,7 @@ export default ImageSlider
 function Controls({ index, setIndex, media }: { index: number, setIndex: (index: number) => void, media: string[] }) {
     return (
         <motion.div
-            className='flex justify-center gap-10 mt-3'
+            className='flex justify-center gap-10 mb-3'
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7 }}

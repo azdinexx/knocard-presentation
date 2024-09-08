@@ -19,7 +19,7 @@ export default function Home() {
 
 function HomeHeader() {
   return (
-    <div className="w-full  sm:p-0 h-[120px]  md:h-[100px] lg:h-[105px] xl:h-[110px] bg-gradient-to-r from-[#009CD4] to-[#00BAF2] relative grid grid-cols-1  place-content-center  place-items-center ">
+    <div className="w-full  sm:p-0 h-[120px]  md:h-[100px] lg:h-[105px] xl:h-[110px] bg-gradient-to-r from-[#009CD4] to-[#00BAF2] relative grid grid-cols-1  place-content-center  place-items-center overflow-hidden">
       <svg width="1286" height="629" viewBox="0 0 1286 629" fill="none" xmlns="http://www.w3.org/2000/svg"
         className="absolute -bottom-1/2 -right-1/4 z-0"
       >
