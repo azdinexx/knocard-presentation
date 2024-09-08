@@ -21,8 +21,12 @@ async function page() {
                         priority
                         alt='home' fill />
                 </div>
-                <div className='md:w-1/2 w-full h-full flex items-center justify-center'>
+                <div className='md:w-1/2 w-full h-full flex flex-col items-center justify-center'>
                     <PasswordForm />
+                    <div className='mt-auto mb-10'>
+                        <p>powered by </p>
+                        <p className='font-bold text-xl'>POP Presentation</p>
+                    </div>
                 </div>
             </div >
             <Toaster position='top-center' />

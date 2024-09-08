@@ -1,5 +1,6 @@
 'use client'
 import { signIn } from '@/actions/auth'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
@@ -9,6 +10,7 @@ function PasswordPage() {
     const [password, setPassword] = useState(['', '', '', ''])
     const [state, action] = useFormState(signIn, null)
     const router = useRouter()
+    const [remember, setRemember] = useState(false)
 
     useEffect(() => {
         if (state?.error) {
@@ -48,6 +50,7 @@ function PasswordPage() {
         if (fullPassword.length === 4) {
             const formData = new FormData()
             formData.append('pwd', fullPassword)
+            formData.append('remember', remember.toString())
             action(formData)
         } else {
             toast.error('Password must be 4 digits')
@@ -56,7 +59,14 @@ function PasswordPage() {
 
     return (
         <>
-            <div className='w-full flex items-center justify-center'>
+            <div className='w-full flex flex-col items-center justify-center mt-auto'>
+                <div className='relative mb-5'>
+
+                    <Image src='/knocard-password-page.png' alt='logo' quality={100} width={250} height={250}
+                        className=''
+                    />
+                    <p className='absolute bottom-0 right-0'>overview</p>
+                </div>
                 <form onSubmit={handleSubmit} className='p-10 w-96  bg-blue-50 rounded-xl'>
                     <div className='w-full h-full flex items-center justify-center flex-col gap-4'>
                         <div className='flex gap-2'>
@@ -79,7 +89,17 @@ function PasswordPage() {
                                 />
                             ))}
                         </div>
+                        <div className='flex  gap-2 w-full pl-4 items-center'>
+                            <input type="checkbox" name="remember" id="remember"
+                                className='w-4 h-4 rounded-md'
+                                checked={remember}
+                                onChange={() => setRemember(!remember)}
+                            />
+                            <label htmlFor="remember"
+                            >Remember me</label>
+                        </div>
                         <input
+
                             type="hidden"
                             name="pwd"
                             value={password.join('')}

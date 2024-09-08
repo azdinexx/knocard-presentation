@@ -11,7 +11,9 @@ type SignInFormState = null | {
 
 export async function signIn(state: SignInFormState, formData: FormData) {
   const password = formData.get("pwd") as string;
+  const remember = formData.get("remember");
   console.log("password : ", password);
+  console.log("remember : ", remember);
   console.log("process.env.PASSWORD : ", process.env.PASSWORD);
   if (!password) {
     return { error: "password is required" };
@@ -29,14 +31,14 @@ export async function signIn(state: SignInFormState, formData: FormData) {
   })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("1h")
+    .setExpirationTime(remember ? "1d" : "1h")
     .sign(secret);
 
   cookies().set("knocard-session", session, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
-    maxAge: 3600 * 24 * 30, // 30 days
+    maxAge: remember ? 86400 : 3600,
   });
 
   return { success: true };
