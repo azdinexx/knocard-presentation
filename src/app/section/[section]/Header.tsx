@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import { Reporting } from '@/components/icons/reporting';
-import { TeamsAndGroups } from '@/components/icons/team_&_groups';
+import { TeamsAndGroups } from '@/components/icons/team-and-groups';
 import { Share } from '@/components/icons/share';
 import { Media } from '@/components/icons/media';
 import { Social } from '@/components/icons/social';
@@ -11,6 +11,7 @@ import { ScanBusinessCard } from '@/components/icons/scan_business_card';
 import { AddNewPropspects } from '@/components/icons/add_new_prospect';
 import { Messaging } from '@/components/icons/messaging';
 import { KnocardLink } from '@/components/icons/knocard_link';
+import { Pipeline } from '@/components/icons/pipeline';
 
 const Header = ({ section, color }: { section: string, color: string }) => {
 
@@ -32,73 +33,55 @@ export default Header;
 
 
 export function Icon({ section, color, className }: { section: string, color: string, className: string }) {
-    switch (section.toLowerCase().replaceAll(' ', '_')) {
-        case 'reporting':
-            return <Reporting className={className}
-                style={{
-                    fill: color
-                }}
+    switch (section) {
+        case 'Reporting':
+            return <Reporting className={className + " fill-white group-hover:fill-[#00BAF2]"}
+
             />
             break
-        case 'teams_&_groups':
-            return <TeamsAndGroups className={className}
-                style={{
-                    fill: color
-                }} />
+        case 'Team & Groups':
+            return <TeamsAndGroups className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
             break
-        case 'share':
-            return <Share className={className}
-                style={{
-                    fill: color
-                }} />
+        case 'Share':
+            return <Share className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
             break
-        case 'media':
-            return <Media className={className}
-                style={{
-                    fill: color
-                }} />
+        case 'Media':
+            return <Media className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
             break
-        case 'social':
-            return <Social className={className}
-                style={{
-                    fill: color
-                }} />
+        case 'Social':
+            return <Social className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
             break
-        case 'feedback_forms':
-            return <FeedbackForms className={className}
-                style={{
-                    fill: color
-                }} />
+        case 'Feedback Forms':
+            return <FeedbackForms className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
             break
-        case 'referrals':
-            return <Referrals className={className}
-                style={{
-                    fill: color
-                }} />
+        case 'Referrals':
+            return <Referrals className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
             break
-        case 'scan_business_card':
-            return <ScanBusinessCard className={className}
-                style={{
-                    fill: color
-                }} />
+        case 'Scan Business Card':
+            return <ScanBusinessCard className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
             break
-        case 'add_new_prospect':
-            return <AddNewPropspects className={className}
-                style={{
-                    fill: color
-                }} />
+        case 'Add New Prospect':
+            return <AddNewPropspects className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
             break
-        case 'messaging':
-            return <Messaging className={className}
-                style={{
-                    fill: color
-                }} />
+        case 'Messaging':
+            return <Messaging className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
             break
-        case 'knocard_link':
-            return <KnocardLink className={className}
-                style={{
-                    fill: color
-                }} />
+        case 'KnoCard Link':
+            return <KnocardLink className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
+            break
+        case 'Pipeline':
+            return <Pipeline className={className + " fill-white group-hover:fill-[#00BAF2]"}
+            />
             break
     }
 }

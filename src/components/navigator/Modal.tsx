@@ -79,16 +79,16 @@ export default function Modal({ isOpen, onClose }: {
                                         transform: 'translate(-50%, -50%)',
                                     }}
                                 >
-                                    <Link href={item.href} className="flex flex-col items-center justify-center">
+                                    <Link href={item.href} className="flex flex-col items-center justify-center group ">
                                         <motion.div
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
-                                            className="w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 overflow-hidden flex items-center justify-center"
+                                            className="w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 overflow-hidden flex items-center justify-center "
                                         >
                                             <Icon
                                                 section={item.title}
-                                                color="white"
-                                                className="overflow-hidden"
+                                                color="#00BAF2"
+                                                className="text-blue-100"
                                             />
                                         </motion.div>
                                         <motion.p
@@ -96,7 +96,7 @@ export default function Modal({ isOpen, onClose }: {
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: 10 }}
                                             transition={{ delay: i * 0.05 + 0.2, duration: 0.3 }}
-                                            className="text-center text-[11px] sm:text-xs md:text-sm font-medium max-w-20 sm:max-w-24 md:max-w-28 lg:max-w-40 text-white/60"
+                                            className="text-center text-[11px] sm:text-xs md:text-sm font-medium max-w-20 sm:max-w-24 md:max-w-28 lg:max-w-40 text-white/60 group-hover:text-[#00BAF2]"
                                         >
                                             {item.title}
                                         </motion.p>
@@ -148,10 +148,10 @@ const list = [
         icon: '/icones/share.svg',
         href: '/section/share',
     }, {
-        id: 'team_&_groups',
+        id: 'team-and-groups',
         title: 'Team & Groups',
         icon: '/icones/team_&_groups.svg',
-        href: '/section/team_&_groups',
+        href: '/section/team-and-groups',
     }, {
         id: 'messaging',
         title: 'Messaging',
