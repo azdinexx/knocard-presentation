@@ -111,7 +111,7 @@ function ImageSlider({ images, videos, section }: { images: number, videos: stri
                 {(
                     <>
                         <motion.ul
-                            className='flex gap-4 mx-6 '
+                            className='flex gap-4 mx-6 overflow-x-auto scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-blue-100 pb-2'
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.5 }}
@@ -121,7 +121,7 @@ function ImageSlider({ images, videos, section }: { images: number, videos: stri
 
                                     <motion.li
                                         key={i}
-                                        className="relative max-w-20 min-w-[105px] w-20 h-[105px] bg-[url('/iphone.png')] bg-contain bg-no-repeat bg-center cursor-pointer border flex-grow-0"
+                                        className="relative max-w-20 w-20 h-[105px]  cursor-pointer  flex-grow-0"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: i * 0.1 }}
@@ -131,11 +131,20 @@ function ImageSlider({ images, videos, section }: { images: number, videos: stri
                                         }}
                                     >
                                         <Image
+                                            src={`/iphone.png`}
+                                            alt={`Image ${i + 1} iphone`}
+                                            width={100}
+                                            height={100}
+                                            className='absolute  w-auto h-full rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+
+                                        />
+
+                                        <Image
                                             src={`/images/${section}/${i + 1}.png`}
                                             alt={`Image ${i + 1}`}
                                             width={100}
                                             height={100}
-                                            className='absolute w-[76px] h-[96%] rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+                                            className='absolute w-[45px] h-[96%] rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
 
                                         />
 
