@@ -1,5 +1,6 @@
 import { Lato } from "next/font/google";
 import Hero from "./Hero";
+import Link from "next/link";
 
 const lato = Lato({
   subsets: ['latin'],
@@ -30,7 +31,7 @@ function HomeHeader() {
 
       <div className="flex flex-col items-center z-10 justify-center text-center  w-full h-full">
 
-        <div className="md:absolute top-1/2 -translate-y-1/2 z-10 left-8 ">
+        <Link href={'https://knocard.com'} className="md:absolute top-1/2 -translate-y-1/2 z-10 left-8 ">
 
           <svg width="124" className="w-24 md:w-28" viewBox="0 0 124 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_980_1499)">
@@ -49,7 +50,7 @@ function HomeHeader() {
             </defs>
           </svg>
 
-        </div>
+        </Link>
 
         <h1 className={`${lato.className} text-[#FFFFFF] text-[18px] md:text-[24px] lg:text-[28px] xl:text-[32px] line-clamp-[27px] font-[700]`}>Get to <span className="text-yellow-300">KNO</span> more!</h1>
         <p className="text-[#EEEEEE] text-[14px] line-clamp-[21px] font-[400]">A dynamic tour through our game-changing features</p>
