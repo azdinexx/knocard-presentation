@@ -38,7 +38,6 @@ function FullscreenVideoSlider({ videos, index, setIndex, setFullscreen }: Fulls
         >
             <main className="w-full h-full relative">
 
-
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={index}
@@ -50,7 +49,7 @@ function FullscreenVideoSlider({ videos, index, setIndex, setFullscreen }: Fulls
                         <video
                             ref={videoRef}
                             src={videos[index]}
-                            className="w-full h-full object-cover"
+                            className="w-auto h-full object-cover"
                             onClick={handleVideoClick}
                             autoPlay={isPlaying}
                             controls={isPlaying}

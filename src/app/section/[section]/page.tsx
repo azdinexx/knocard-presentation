@@ -73,7 +73,7 @@ const content = [
         ],
         images: 5,
         video: [
-            "/videos/messaging/how to .mp4",
+            "/videos/messaging/1.mp4",
         ]
     },
     {
@@ -107,7 +107,7 @@ const content = [
         ],
         images: 5,
         video: [
-            "/videos/knocard-link/how to .mp4",
+            "/videos/knocard-link/1.mp4",
         ]
     },
     {
@@ -143,7 +143,7 @@ const content = [
         ],
         images: 5,
         video: [
-            "/videos/media/how to .mp4",
+            "/videos/media/1.mp4",
         ]
     },
     {
@@ -179,7 +179,7 @@ const content = [
         ],
         images: 5,
         video: [
-            "/videos/social/how to .mp4",
+            "/videos/social/1.mp4",
         ]
     },
     {
@@ -215,7 +215,7 @@ const content = [
         ],
         images: 6,
         video: [
-            "/videos/feedback-forms/how to .mp4",
+            "/videos/feedback_forms/1.mp4",
         ]
     },
     {
@@ -252,7 +252,7 @@ const content = [
         ],
         images: 4,
         video: [
-            "/videos/referrals/how to .mp4",
+            "/videos/referral/1.mp4",
         ]
     },
     {
@@ -289,7 +289,7 @@ const content = [
         ],
         images: 5,
         video: [
-            "/videos/scan-business-card/how to .mp4",
+            "/videos/scan-business-card/1.mp4",
         ]
     },
     {
@@ -324,7 +324,7 @@ const content = [
         ],
         images: 5,
         video: [
-            "/videos/add-prospect-client/how to .mp4",
+            "/videos/add-prospect-client/1.mp4",
         ]
     },
 
@@ -360,7 +360,7 @@ const content = [
         ],
         images: 6,
         video: [
-            "/videos/share/how to .mp4",
+            "/videos/share/1.mp4",
         ]
     },
     {
@@ -398,7 +398,7 @@ const content = [
         ],
         images: 5,
         video: [
-            "/videos/team-groups/how to .mp4",
+            "/videos/team/1.mp4",
         ]
     },
     {
@@ -434,7 +434,7 @@ const content = [
         ],
         images: 6,
         video: [
-            "/videos/reporting/how to .mp4",
+            "/videos/reporting/1.mp4",
         ]
     },
     {
@@ -470,7 +470,7 @@ const content = [
         ],
         images: 6,
         video: [
-            "/videos/pipeline/how to .mp4",
+            "/videos/pipeline/1.mp4",
         ]
     },
 ];
