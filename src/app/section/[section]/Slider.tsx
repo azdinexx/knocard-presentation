@@ -108,56 +108,46 @@ function ImageSlider({ images, videos, section }: { images: number, videos: stri
                         <Controls index={videoIndex} setIndex={setVideoIndex} media={videos} />
                     )
                 }
-                {(
-                    <>
-                        <motion.ul
-                            className='flex gap-4 mx-6 overflow-x-auto scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-blue-100 pb-2'
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.5 }}
-                        >
-                            {
-                                Array.from({ length: images }).map((_, i) => (
 
-                                    <motion.li
-                                        key={i}
-                                        className="relative max-w-20 w-20 h-[105px]  cursor-pointer  flex-grow-0"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: i * 0.1 }}
-                                        onClick={() => {
-                                            setFullscreenImage(true);
-                                            setImageIndex(i);
-                                        }}
-                                    >
-                                        <Image
-                                            src={`/iphone.png`}
-                                            alt={`Image ${i + 1} iphone`}
-                                            width={100}
-                                            height={100}
-                                            className='absolute  w-auto h-full rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
-
-                                        />
-
-                                        <Image
-                                            src={`/images/${section}/${i + 1}.png`}
-                                            alt={`Image ${i + 1}`}
-                                            width={100}
-                                            height={100}
-                                            className='absolute w-[45px] h-[96%] rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
-
-                                        />
-
-                                    </motion.li>
-                                ))
-                            }
-                        </motion.ul>
-                    </>
-                )}
             </motion.div>
             {fullscreenImage && (
                 <FullscreenImageSlider setFullscreen={setFullscreenImage} images={images} index={imageIndex} setIndex={setImageIndex} section={section} />
             )}
+            <ul className='w-full overflow-hidden h-28  flex justify-center items-center'>{
+                Array.from({ length: images }).map((_, i) => (
+
+                    <motion.li
+                        key={i}
+                        className="relative max-w-20 w-20 h-[105px]  cursor-pointer  flex-grow-0"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                        onClick={() => {
+                            setFullscreenImage(true);
+                            setImageIndex(i);
+                        }}
+                    >
+                        <Image
+                            src={`/iphone.png`}
+                            alt={`Image ${i + 1} iphone`}
+                            width={100}
+                            height={100}
+                            className='absolute  w-auto h-full rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+
+                        />
+
+                        <Image
+                            src={`/images/${section}/${i + 1}.png`}
+                            alt={`Image ${i + 1}`}
+                            width={100}
+                            height={100}
+                            className='absolute w-[45px] h-[96%] rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+
+                        />
+
+                    </motion.li>
+                ))
+            }</ul>
         </>
     )
 }
