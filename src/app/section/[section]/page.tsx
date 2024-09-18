@@ -177,7 +177,7 @@ const content = [
                 ],
             },
         ],
-        images: 5,
+        images: 6,
         video: [
             "/videos/social/1.mp4",
         ]
