@@ -45,16 +45,25 @@ function ImageSlider({ images, videos, section }: { images: number, videos: stri
                     ref={constraintsRef}
                 >
 
-                    {videos.map((video, index) => (
+                    {videos.map((video, index) => index === 0 && (
                         <div key={index} className={`absolute inset-0 ${index === videoIndex ? 'block' : 'hidden'}`}>
-                            <video
-                                src={video}
-                                className="w-full h-full object-cover cursor-pointer"
+                            <Image
+                                src={video.split('/').slice(0, video.split('/').length - 1).join('/') + '/thumbnail.jpeg'}
+                                className="w-full h-full object-cover  bg-cover"
+                                alt='video thumbnail'
+                                fill
+                                objectFit='cover'
+                            />
+                            <svg className='z-50 cursor-pointer  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 onClick={() => {
                                     setFullscreenVideo(true);
                                     setVideoIndex(index);
                                 }}
-                            />
+                            >
+                                <path opacity="0.6" d="M27.931 51.3337C40.8176 51.3337 51.2643 40.887 51.2643 28.0003C51.2643 15.1137 40.8176 4.66699 27.931 4.66699C15.0443 4.66699 4.59766 15.1137 4.59766 28.0003C4.59766 40.887 15.0443 51.3337 27.931 51.3337Z" fill="#007CB4" />
+                                <path d="M34.9298 23.8699L28.1632 19.9733C26.4832 18.9933 24.4532 18.9933 22.7732 19.9733C21.0932 20.9533 20.0898 22.6799 20.0898 24.6399V32.4566C20.0898 34.3933 21.0932 36.1433 22.7732 37.1233C23.6132 37.6133 24.5465 37.8466 25.4565 37.8466C26.3898 37.8466 27.2998 37.6133 28.1398 37.1233L34.9065 33.2266C36.5865 32.2466 37.5898 30.5199 37.5898 28.5599C37.6365 26.5999 36.6332 24.8499 34.9298 23.8699Z" fill="white" />
+                            </svg>
+
                         </div>
                     ))}
                     {fullscreenVideo && (
