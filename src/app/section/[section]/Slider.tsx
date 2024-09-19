@@ -43,6 +43,7 @@ function ImageSlider({ images, videos, section }: { images: number, videos: stri
                     className='w-full aspect-[4/3] bg-blue-300 rounded-lg relative overflow-hidden'
                     transition={{ type: "spring", stiffness: 300 }}
                     ref={constraintsRef}
+
                 >
 
                     {videos.map((video, index) => index === 0 && (
